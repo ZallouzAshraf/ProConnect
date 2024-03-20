@@ -1,0 +1,7 @@
+.stats {
+  width: 100%;
+  display: flex;
+  gap: 100px;
+  padding: 5px;
+  margin: 100px 80px;
+}
