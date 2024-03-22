@@ -6,6 +6,7 @@
   text-align: center;
   box-shadow: 15px 5px 10px rgba(0, 0, 0, 0.8);
 }
+
 .search input {
   width: 250px;
   height: 35px;
@@ -24,4 +25,5 @@
   background: #1f5156e5;
   margin-left: 80px;
   color: white;
+  cursor: pointer;
 }

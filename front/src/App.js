@@ -1,4 +1,5 @@
 import "./App.css";
+import Categories from "./Components/Categories/Categories";
 
 import Footer from "./Components/Footer/Footer";
 import Info from "./Components/Infos/Info";
@@ -15,6 +16,7 @@ function App() {
       <Search />
       <Info />
       <Stats />
+      <Categories />
       <Footer />
     </>
   );
