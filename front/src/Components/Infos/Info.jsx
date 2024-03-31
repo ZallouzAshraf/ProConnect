@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Info.css";
 import img1 from "../../Assets/disponibilite.png";
 import img2 from "../../Assets/ql.png";
@@ -7,7 +7,7 @@ import img3 from "../../Assets/paiementsecurise.png";
 export default function Info() {
   return (
     <div>
-      <h1 class="text-shadow">
+      <h1 className="text-shadow">
         Pourquoi prendre rendez-vous avec ProConnect ?{" "}
       </h1>
 

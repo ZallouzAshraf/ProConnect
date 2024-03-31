@@ -1,0 +1,31 @@
+.allcategorie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  text-align: center;
+}
+.all-card-image {
+  width: 35%;
+  align-items: center;
+}
+.all-top-card {
+  padding: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  flex-basis: 20%;
+  border: 1px solid #1f5156;
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.386);
+
+  filter: brightness(110%) saturate(130%);
+}
+h1 {
+  color: #1f5156;
+  font-size: 45px;
+  margin-bottom: 50px;
+}
+.all-top-card-text h2 {
+  color: #1f5156;
+}

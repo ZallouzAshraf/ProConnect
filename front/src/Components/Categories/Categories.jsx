@@ -3,9 +3,10 @@ import "./Categories.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { topmetier, responsive } from "../Data/data";
+import { Link } from "react-router-dom";
 
 export default function Categories() {
-  const cardCategorie = Object.values(topmetier).map((item, index) => (
+  const cardCategorie = topmetier.map((item, index) => (
     <div className="top-card" key={index}>
       <div className="card-cat">
         <img className="card-image top" src={item.img} alt="" />
@@ -22,7 +23,9 @@ export default function Categories() {
       <Carousel showDots={true} responsive={responsive} infinite={true}>
         {cardCategorie}
       </Carousel>
-      <button className="cat-plus">Voir Plus </button>
+      <Link to="/allcategories">
+        <button className="cat-plus">Voir Plus </button>
+      </Link>
     </div>
   );
 }

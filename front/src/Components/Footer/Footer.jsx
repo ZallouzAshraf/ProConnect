@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
         <div className="col">
           <h3>
-            Office{" "}
+            Office
             <div className="underline">
               <span></span>
             </div>
@@ -28,45 +28,37 @@ export default function Footer() {
         </div>
         <div className="col">
           <h3>
-            Links{" "}
+            Links
             <div className="underline">
               <span></span>
             </div>
           </h3>
           <ul>
-            <li>
-              <a href="">Home</a>
-            </li>
-            <li>
-              <a href="">Services</a>
-            </li>
-            <li>
-              <a href="">A Propos</a>
-            </li>
-            <li>
-              <a href="">Contacts</a>
-            </li>
+            <li>Home</li>
+            <li>Services</li>
+            <li>A Propos</li>
+            <li>Contacts</li>
           </ul>
         </div>
         <div className="col">
           <h3>
-            Newsletter{" "}
+            Newsletter
             <div className="underline">
               <span></span>
             </div>
           </h3>
           <form action="">
-            <i class="fa-regular fa-envelope"></i>
+            <i className="fa-regular fa-envelope"></i>
             <input type="email" placeholder="Entrer Votre Email" required />
             <button type="submit">
-              <i class="fa-solid fa-arrow-right"></i>
+              <i className="fa-solid fa-arrow-right"></i>
             </button>
           </form>
           <div className="socials-icons">
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-whatsapp"></i>
-            <i class="fa-brands fa-pinterest"></i>
+            <i className="fa-brands fa-facebook-f"></i>
+            <i className="fa-brands fa-twitter"></i>
+            <i className="fa-brands fa-whatsapp"></i>
+            <i className="fa-brands fa-pinterest"></i>
           </div>
         </div>
       </div>

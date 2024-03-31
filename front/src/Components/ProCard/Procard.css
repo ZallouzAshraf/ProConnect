@@ -1,0 +1,63 @@
+.procard {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.289);
+  margin-top: 20px;
+  border-radius: 25px;
+}
+.description h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 15px;
+  font-size: 18px;
+}
+.description p {
+  margin: 15px;
+  text-align: justify;
+}
+.info {
+  padding: 20px;
+  margin: 0;
+}
+.info img {
+  width: 12%;
+  margin-top: 20px;
+}
+.details p {
+  font-size: 15px;
+  text-align: left;
+  margin-left: 65px;
+  text-transform: uppercase;
+  color: #24348d;
+  cursor: pointer;
+}
+.details h4 {
+  margin-left: 65px;
+  color: #00adbd;
+  font-size: 22px;
+}
+.details h3 {
+  margin-left: 65px;
+  color: #000000;
+  font-size: 18px;
+}
+.details {
+  margin-top: 25px;
+  margin-left: -20px;
+}
+.info button {
+  width: 250px;
+  height: 45px;
+  margin: 50px 40px;
+  background: linear-gradient(to right, #4d4d4d, #1f9aa5);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.info button:hover {
+  background: linear-gradient(to left, #8f7a1e, #3f3e3e);
+  border: 1px solid yellow;
+}

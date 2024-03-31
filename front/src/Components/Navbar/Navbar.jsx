@@ -20,7 +20,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link
                 to="/"
-                activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
@@ -30,7 +29,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link
                 to="/about"
-                activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
@@ -40,7 +38,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link
                 to="/blog"
-                activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
@@ -50,7 +47,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link
                 to="/contact"
-                activeClassName="active"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
@@ -59,9 +55,12 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="nav-menu-right">
-            <li className="nav-item">Register</li>
             <hr />
-            <li className="nav-item">Login</li>
+            <li>
+              <Link to="/loginandregister">
+                <button className="btnlogin">Login</button>
+              </Link>
+            </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
