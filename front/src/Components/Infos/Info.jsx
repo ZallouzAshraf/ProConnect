@@ -11,7 +11,7 @@ export default function Info() {
         Pourquoi prendre rendez-vous avec ProConnect ?{" "}
       </h1>
 
-      <div className="info">
+      <div className="infos">
         <div>
           <img src={img1} alt="" />
           <p>ProConnect facilite la recherche de professionnels qualifiés.</p>

@@ -1,7 +1,7 @@
 footer {
   width: 100%;
   bottom: 0;
-  background: linear-gradient(to right, #1f5156e3, #535353d3);
+  background: linear-gradient(to right, #272727de, #ad6823cc);
   color: white;
   padding: 70px 0 30px;
   border-top-left-radius: 125px;
@@ -51,6 +51,7 @@ ul li a {
 form {
   padding-bottom: 15px;
   display: flex;
+
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
@@ -63,9 +64,13 @@ form .fa-regular {
 form input {
   width: 100%;
   background: transparent;
-  color: #ccc;
+  color: #fff;
   border: 0;
+  place-content: red;
   outline: none;
+}
+form input::placeholder {
+  color: rgba(199, 199, 199, 0.615);
 }
 form button {
   background: transparent;
@@ -77,15 +82,13 @@ form button .fa-solid {
   font-size: 16px;
   color: #ccc;
 }
-.socials-icons .fa-brands {
+.socials-icons img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
-  font-size: 20px;
   color: black;
-  background: white;
   margin-right: 15px;
   cursor: pointer;
 }

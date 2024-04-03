@@ -12,6 +12,7 @@
   gap: 40px;
   background: rgba(255, 255, 255, 0.589);
 }
+
 .search-result {
   padding: 20px;
   height: 600px;
@@ -20,7 +21,8 @@
   overflow-y: auto;
 }
 .search-option h1 {
-  color: #1f5156;
+  color: #000;
+  font-family: "Playfair Display", serif;
   font-size: 25px;
   text-align: start;
   margin-left: 15px;
@@ -47,9 +49,12 @@ hr {
   width: 50%;
   height: 40px;
   border-radius: 25px;
-  background: linear-gradient(to right, #4d4d4d, #1f9aa5);
+  background: linear-gradient(to right, #5353539f, #b67332);
   align-self: center;
   border: none;
   color: white;
   cursor: pointer;
+}
+.search-option button:hover {
+  background: linear-gradient(to right, #000, #7e4e1f);
 }

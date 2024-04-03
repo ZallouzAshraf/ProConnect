@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { topmetier, responsive } from "../Data/data";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Categories() {
   const cardCategorie = topmetier.map((item, index) => (
@@ -16,7 +17,9 @@ export default function Categories() {
       </div>
     </div>
   ));
-
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="categorie">
       <h1>Focus sur les Experts</h1>
@@ -24,7 +27,9 @@ export default function Categories() {
         {cardCategorie}
       </Carousel>
       <Link to="/allcategories">
-        <button className="cat-plus">Voir Plus </button>
+        <button className="cat-plus" onClick={scrollToTop}>
+          Voir Plus <FaArrowRight className="arrow-ic" />
+        </button>
       </Link>
     </div>
   );

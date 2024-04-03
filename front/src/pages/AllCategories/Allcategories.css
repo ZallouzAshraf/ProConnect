@@ -17,12 +17,15 @@
   border: 1px solid #1f5156;
   border-radius: 20px;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.386);
-
-  filter: brightness(110%) saturate(130%);
+  filter: brightness(110%) saturate(140%);
+}
+.all-top-card:hover {
+  border: 1px solid #b67332;
+  background: rgba(255, 255, 255, 0.886);
 }
 h1 {
-  color: #1f5156;
+  color: #bd752d;
+  font-family: "Playfair Display", serif;
   font-size: 45px;
   margin-bottom: 50px;
 }

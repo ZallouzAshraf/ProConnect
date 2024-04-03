@@ -1,17 +1,23 @@
 import React from "react";
 import "./Procard.css";
-import profil from "../../Assets/homme.png";
 import { FaCalendarAlt } from "react-icons/fa";
 import { GiPositionMarker } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 export default function Procard(props) {
+  const nav = useNavigate();
+  const { nom, ville, spec, genre } = props;
+
+  const rediriger = () => {
+    nav("/Details", { state: { nom, ville, spec, genre } });
+  };
   return (
     <div>
       <div className="procard">
         <div className="info">
-          <img src={profil} alt="profil" />
+          <img src={props.img} alt="profil" />
           <div className="details">
-            <h4>{props.nom}</h4>
+            <h4 onClick={rediriger}>{props.nom}</h4>
             <h3>{props.spec}</h3>
             <p>
               <GiPositionMarker />

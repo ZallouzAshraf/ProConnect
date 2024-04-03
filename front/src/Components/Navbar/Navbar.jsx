@@ -1,6 +1,8 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import logo from "../../Assets/logonv.png";
+import { FaAlignJustify } from "react-icons/fa6";
 
 export default function Navbar() {
   const [click, setClick] = React.useState(false);
@@ -14,7 +16,7 @@ export default function Navbar() {
       <nav className="navbar" onClick={(e) => e.stopPropagation()}>
         <div className="nav-container">
           <Link to="/" className="nav-logo">
-            ProConnect
+            <img src={logo} alt="" />
           </Link>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
@@ -46,11 +48,11 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/contact"
+                to="/Contact"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
-                Contact Us
+                Contact
               </Link>
             </li>
           </ul>
@@ -58,12 +60,12 @@ export default function Navbar() {
             <hr />
             <li>
               <Link to="/loginandregister">
-                <button className="btnlogin">Login</button>
+                <button className="btnlogin">Se Connecter</button>
               </Link>
             </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
-            <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
+            <FaAlignJustify color="white" />
           </div>
         </div>
       </nav>

@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Professionnel.css";
 import Procard from "../ProCard/Procard";
 import { professionnels } from "../Data/data";
+import { useLocation } from "react-router-dom";
+import homme from "../../Assets/homme.png";
+import femme from "../../Assets/femme.png";
 
 export default function Professionnel() {
-  const [searchName, setSearchName] = useState("");
-  const [searchSpec, setSearchSpec] = useState("");
-  const [searchVille, setSearchVille] = useState("");
+  const { state } = useLocation();
+  const { searchName, searchSpec, searchVille, spec } = state || {};
+  const [Name, setName] = useState(searchName || "");
+  const [Spec, setSpec] = useState(spec || searchSpec || "");
+  const [Ville, setVille] = useState(searchVille || "");
+  const [Genre, setGenre] = useState("");
 
   const filteredProfessionnels = professionnels.filter((prof) => {
     return (
-      prof.nom.toLowerCase().includes(searchName.toLowerCase()) &&
-      (searchSpec === "" || prof.spec === searchSpec) &&
-      (searchVille === "" || prof.ville === searchVille)
+      prof.nom.toLowerCase().includes(Name.toLowerCase()) &&
+      (Spec === "" || prof.spec === Spec) &&
+      (Ville === "" || prof.ville === Ville) &&
+      (Genre === "" || prof.genre === Genre)
     );
   });
+
+  useEffect(() => {
+    if (!searchName) {
+      setName("");
+    }
+    if (!searchSpec && !spec) {
+      setSpec("");
+    }
+    if (!searchVille) {
+      setVille("");
+    }
+  }, [searchName, searchSpec, searchVille, spec]);
 
   return (
     <div>
@@ -25,13 +44,10 @@ export default function Professionnel() {
           <input
             type="search"
             placeholder="Nom du Professionnel"
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
+            value={Name}
+            onChange={(e) => setName(e.target.value)}
           />
-          <select
-            value={searchSpec}
-            onChange={(e) => setSearchSpec(e.target.value)}
-          >
+          <select value={Spec} onChange={(e) => setSpec(e.target.value)}>
             <option value="">Spécialité</option>
             {Array.from(new Set(professionnels.map((prof) => prof.spec))).map(
               (spec, index) => (
@@ -41,10 +57,7 @@ export default function Professionnel() {
               )
             )}
           </select>
-          <select
-            value={searchVille}
-            onChange={(e) => setSearchVille(e.target.value)}
-          >
+          <select value={Ville} onChange={(e) => setVille(e.target.value)}>
             <option value="">Ville</option>
             {Array.from(new Set(professionnels.map((prof) => prof.ville))).map(
               (ville, index) => (
@@ -54,10 +67,10 @@ export default function Professionnel() {
               )
             )}
           </select>
-          <select>
+          <select value={Genre} onChange={(e) => setGenre(e.target.value)}>
             <option value="">Genre</option>
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
           </select>
           <button>Rechercher</button>
         </div>
@@ -65,11 +78,13 @@ export default function Professionnel() {
           {filteredProfessionnels.map((item, index) => {
             return (
               <Procard
+                img={item.genre === "Homme" ? homme : femme}
                 key={index}
                 nom={item.nom}
                 spec={item.spec}
                 ville={item.ville}
                 description={item.description}
+                genre={item.genre}
               />
             );
           })}

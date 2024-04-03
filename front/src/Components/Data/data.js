@@ -127,6 +127,8 @@ export const professionnels = [
     ville: "Tunis",
     description:
       "Comptable expérimentée spécialisée dans la comptabilité financière pour les petites entreprises.",
+    phone: "75000001",
+    genre: "Femme",
   },
   {
     nom: "Michael Smith",
@@ -134,6 +136,8 @@ export const professionnels = [
     ville: "Sousse",
     description:
       "Avocat chevronné spécialisé en droit des sociétés et négociation de contrats.",
+    phone: "75000002",
+    genre: "Homme",
   },
   {
     nom: "Dr. Emily Brown",
@@ -141,6 +145,8 @@ export const professionnels = [
     ville: "Sfax",
     description:
       "Pédiatre dévouée fournissant des soins compatissants pour les enfants de tous âges.",
+    phone: "75000003",
+    genre: "Femme",
   },
   {
     nom: "Sarah Wilson",
@@ -148,6 +154,8 @@ export const professionnels = [
     ville: "Nabeul",
     description:
       "Enseignante passionnée de l'école primaire, engagée à favoriser l'amour de l'apprentissage chez les jeunes enfants.",
+    phone: "75000004",
+    genre: "Femme",
   },
   {
     nom: "David Miller",
@@ -155,6 +163,8 @@ export const professionnels = [
     ville: "Hammamet",
     description:
       "Agent immobilier expérimenté aidant les clients à acheter et vendre des propriétés résidentielles.",
+    phone: "75000005",
+    genre: "Homme",
   },
   {
     nom: "John Doe",
@@ -162,6 +172,8 @@ export const professionnels = [
     ville: "Bizerte",
     description:
       "Transporteur professionnel offrant des services de livraison rapides et fiables.",
+    phone: "75000006",
+    genre: "Homme",
   },
   {
     nom: "Emma Watson",
@@ -169,6 +181,8 @@ export const professionnels = [
     ville: "Kairouan",
     description:
       "Maçon qualifié spécialisé dans la construction et la rénovation de bâtiments résidentiels.",
+    phone: "75000007",
+    genre: "Femme",
   },
   {
     nom: "Laura Garcia",
@@ -176,6 +190,8 @@ export const professionnels = [
     ville: "Monastir",
     description:
       "Plombier certifié fournissant des services de plomberie résidentielle et commerciale.",
+    phone: "75000008",
+    genre: "Femme",
   },
   {
     nom: "Daniel Brown",
@@ -183,6 +199,8 @@ export const professionnels = [
     ville: "Gabès",
     description:
       "Électricien expérimenté spécialisé dans l'installation et la réparation de systèmes électriques.",
+    phone: "75000009",
+    genre: "Homme",
   },
   {
     nom: "Sophia Johnson",
@@ -190,6 +208,8 @@ export const professionnels = [
     ville: "Kébili",
     description:
       "Menuisier artisanal créant des meubles sur mesure de haute qualité pour les clients.",
+    phone: "75000010",
+    genre: "Femme",
   },
   {
     nom: "Ethan Martinez",
@@ -197,6 +217,8 @@ export const professionnels = [
     ville: "Tataouine",
     description:
       "Peintre professionnel offrant des services de peinture intérieure et extérieure pour les maisons et les bâtiments commerciaux.",
+    phone: "75000011",
+    genre: "Homme",
   },
   {
     nom: "Olivia Wilson",
@@ -204,6 +226,8 @@ export const professionnels = [
     ville: "Tozeur",
     description:
       "Jardinier passionné aménageant et entretenant des jardins résidentiels et commerciaux.",
+    phone: "75000012",
+    genre: "Femme",
   },
   {
     nom: "James Johnson",
@@ -211,6 +235,8 @@ export const professionnels = [
     ville: "Gafsa",
     description:
       "Mécanicien automobile certifié fournissant des services de réparation et d'entretien de véhicules.",
+    phone: "75000013",
+    genre: "Homme",
   },
   {
     nom: "Sophie Smith",
@@ -218,6 +244,8 @@ export const professionnels = [
     ville: "Jendouba",
     description:
       "Coiffeuse professionnelle offrant une gamme complète de services de coiffure pour hommes et femmes.",
+    phone: "75000014",
+    genre: "Femme",
   },
   {
     nom: "Noah Garcia",
@@ -225,6 +253,8 @@ export const professionnels = [
     ville: "Mahdia",
     description:
       "Esthéticienne qualifiée fournissant des soins de beauté et de bien-être pour hommes et femmes.",
+    phone: "75000015",
+    genre: "Homme",
   },
   {
     nom: "Liam Martinez",
@@ -232,6 +262,8 @@ export const professionnels = [
     ville: "Le Kef",
     description:
       "Garde d'enfants expérimentée offrant des services de garde attentifs et ludiques pour les enfants.",
+    phone: "75000016",
+    genre: "Homme",
   },
   {
     nom: "Emma Brown",
@@ -239,5 +271,70 @@ export const professionnels = [
     ville: "Zaghouan",
     description:
       "Cuisinier professionnel spécialisé dans la préparation de plats délicieux pour les événements et les restaurants.",
+    phone: "75000017",
+    genre: "Femme",
+  },
+  {
+    nom: "Sophie Leroy",
+    spec: "Agent immobilier",
+    ville: "Ariana",
+    description:
+      "Agent immobilier expérimenté aidant les clients à acheter et vendre des propriétés résidentielles.",
+    phone: "75000018",
+    genre: "Femme",
+  },
+  {
+    nom: "Antoine Dubois",
+    spec: "Plombier",
+    ville: "Béja",
+    description:
+      "Plombier certifié fournissant des services de plomberie résidentielle et commerciale.",
+    phone: "75000019",
+    genre: "Homme",
+  },
+  {
+    nom: "Emma Martin",
+    spec: "Menuisier",
+    ville: "Ben Arous",
+    description:
+      "Menuisier artisanal créant des meubles sur mesure de haute qualité pour les clients.",
+    phone: "75000020",
+    genre: "Femme",
+  },
+  {
+    nom: "Julie Petit",
+    spec: "Médecin",
+    ville: "Médenine",
+    description:
+      "Médecin dévoué fournissant des soins de santé de qualité pour les patients de tous âges.",
+    phone: "75000021",
+    genre: "Femme",
+  },
+  {
+    nom: "Thomas Dupont",
+    spec: "Enseignant",
+    ville: "Manouba",
+    description:
+      "Enseignant passionné aidant les élèves à atteindre leur plein potentiel académique et personnel.",
+    phone: "75000022",
+    genre: "Homme",
+  },
+  {
+    nom: "Lucas Martin",
+    spec: "Avocat",
+    ville: "Sidi Bouzid",
+    description:
+      "Avocat chevronné spécialisé dans la représentation des clients dans les affaires juridiques complexes.",
+    phone: "75000023",
+    genre: "Homme",
+  },
+  {
+    nom: "Léa Garcia",
+    spec: "Cuisinier",
+    ville: "Siliana",
+    description:
+      "Cuisinier professionnel spécialisé dans la préparation de plats délicieux pour les événements et les restaurants.",
+    phone: "75000024",
+    genre: "Femme",
   },
 ];

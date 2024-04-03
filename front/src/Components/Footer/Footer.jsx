@@ -1,6 +1,11 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../Assets/logo.png";
+import facebook from "../../Assets/facebook.png";
+import twitter from "../../Assets/twitter.png";
+import whatsapp from "../../Assets/whatsapp.png";
+import pinterest from "../../Assets/pinterest.png";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -47,18 +52,18 @@ export default function Footer() {
               <span></span>
             </div>
           </h3>
-          <form action="">
+          <form>
             <i className="fa-regular fa-envelope"></i>
             <input type="email" placeholder="Entrer Votre Email" required />
             <button type="submit">
-              <i className="fa-solid fa-arrow-right"></i>
+              <FaArrowRight color="white" />
             </button>
           </form>
           <div className="socials-icons">
-            <i className="fa-brands fa-facebook-f"></i>
-            <i className="fa-brands fa-twitter"></i>
-            <i className="fa-brands fa-whatsapp"></i>
-            <i className="fa-brands fa-pinterest"></i>
+            <img src={facebook} alt="" />
+            <img src={whatsapp} alt="" />
+            <img src={twitter} alt="" />
+            <img src={pinterest} alt="" />
           </div>
         </div>
       </div>

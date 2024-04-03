@@ -1,0 +1,182 @@
+.details-professionnel {
+  display: flex;
+  justify-content: left;
+  padding: 20px;
+  gap: 20px;
+  background: white;
+}
+.image-prof img {
+  height: 100px;
+  width: 100px;
+}
+.image-prof {
+  width: auto;
+}
+.info-professionnel {
+  width: 20%;
+  padding: 10px;
+  margin-left: 15px;
+}
+.rdv button {
+  width: 250px;
+  height: 45px;
+  margin-top: 30px;
+  background: linear-gradient(to right, #0a0a0ad3, #c07932);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 500px;
+}
+.rdv button:hover {
+  background: linear-gradient(to right, #000, #7e4e1f);
+  border: 1px solid #b67332;
+}
+.info-professionnel p {
+  font-size: 14px;
+  text-align: left;
+
+  text-transform: uppercase;
+  color: #24348d;
+  cursor: pointer;
+}
+.info-professionnel h4 {
+  color: #00adbd;
+  font-size: 20px;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+.info-professionnel h3 {
+  color: #000000;
+  font-size: 16px;
+}
+.info-contact {
+  display: flex;
+}
+.contact-numbers {
+  margin: 25px;
+  width: 50em;
+  height: 32em;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+}
+.contact-rdv {
+  margin: 25px;
+  width: 40em;
+  height: 32em;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+}
+.contact-numbers h1 {
+  text-align: left;
+  color: #000000;
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.btn-msg {
+  width: 180px;
+  height: 40px;
+  background: linear-gradient(to right, #0a0a0ad3, #c07932);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  margin: 10px 45px;
+  cursor: pointer;
+}
+.btn-num {
+  width: 180px;
+  height: 40px;
+  background: linear-gradient(to right, #0a0a0ad3, #c07932);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  margin: 15px 45px;
+  cursor: pointer;
+}
+.horaire-prof {
+  margin-left: 20px;
+}
+
+.horaire-prof h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.horaire-prof ul {
+  list-style: none;
+  padding: 0;
+}
+
+.horaire-prof li {
+  display: flex;
+  align-items: center;
+}
+
+.horaire-prof li span {
+  margin-right: 10px;
+}
+
+.dash {
+  flex-grow: 1;
+  color: rgba(131, 131, 131, 0.712);
+}
+.jour {
+  width: 80px;
+}
+.professionnel-btn img {
+  width: 40px;
+  height: 40px;
+  margin-top: 15px;
+}
+.professionnel-btn {
+  display: flex;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.clock {
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
+}
+.date-rdv {
+  display: flex;
+  text-align: justify;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+.pick-time {
+  display: grid;
+  margin: 12px 30px 0px 30px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.pick-time input[type="radio"] {
+  display: none;
+}
+
+.pick-time label {
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 10px;
+}
+
+.pick-time label:hover {
+  color: #f17900;
+}
+
+.pick-time input[type="radio"]:checked + label {
+  background: #00adbd;
+  color: white;
+}

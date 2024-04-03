@@ -6,16 +6,16 @@
   border-radius: 15px;
   font-size: 18px;
   gap: 15px;
-  background: linear-gradient(to right, #53535334, #1f51568e);
+  background: linear-gradient(to right, #25252534, #b67432a2);
 }
 .card img {
   width: 25%;
   margin-left: 25px;
 }
-.details p {
+.details-stats p {
   color: gray;
   line-height: 30px;
 }
-.details {
+.details-stats {
   margin-left: 5px;
 }

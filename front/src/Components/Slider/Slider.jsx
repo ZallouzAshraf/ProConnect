@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import "./Slider.css";
 import img1 from "../../Assets/image1.jpg";
 import img2 from "../../Assets/image2.jpg";
@@ -29,15 +29,10 @@ export default function Slider() {
             }}
           >
             <div className="desc-proconnect">
-              <h1>ProConnect</h1>
+              <h1>PROconnect</h1>
               <p>
-                Notre plateforme vous offre une multitude de fonctionnalités
-                pour simplifier la gestion de votre entreprise, de la gestion
-                des clients à la facturation en passant par la gestion des
-                projets. Avec des outils puissants et intuitifs à votre
-                disposition, vous pouvez gérer tous les aspects de votre
-                activité en un seul endroit, et ainsi gagner du temps et rester
-                organisé
+                Notre plateforme simplifie la gestion d'entreprise, de la
+                clientèle à la facturation. Gérez tout en un seul endroit
               </p>
             </div>
           </div>
@@ -53,15 +48,11 @@ export default function Slider() {
             }}
           >
             <div className="desc-proconnect">
-              <h1>ProConnect</h1>
+              <h1>PROconnect</h1>
               <p>
-                Grâce à nos partenariats stratégiques avec les leaders de
-                l'industrie, nous vous offrons un accès privilégié à des
-                ressources exclusives et à des solutions de pointe. Que vous
-                cherchiez à optimiser vos processus, à développer votre
-                entreprise ou à rester à jour avec les dernières tendances,
-                notre plateforme vous fournit les outils et les informations
-                nécessaires pour réussir dans un monde en constante évolution.
+                Nos partenariats stratégiques vous offrent un accès privilégié à
+                des solutions de pointe. Notre plateforme vous fournit les
+                outils pour réussir dans un monde en constante évolution
               </p>
             </div>
           </div>
@@ -77,15 +68,11 @@ export default function Slider() {
             }}
           >
             <div className="desc-proconnect">
-              <h1>ProConnect</h1>
+              <h1>PROconnect</h1>
               <p>
-                En tant que membre de notre communauté, vous bénéficiez d'un
-                soutien continu et d'une assistance personnalisée de la part de
-                notre équipe d'experts. Que vous ayez des questions, des
-                préoccupations ou des idées, nous sommes là pour vous aider à
-                chaque étape de votre parcours. Rejoignez-nous dès aujourd'hui
-                et découvrez comment nous pouvons vous aider à atteindre vos
-                objectifs professionnels.
+                Profitez d'un soutien continu de notre équipe d'experts pour
+                atteindre vos objectifs professionnels en tant que membre de
+                notre communauté
               </p>
             </div>
           </div>

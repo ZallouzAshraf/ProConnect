@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Search.css";
+import { professionnels } from "../Data/data";
 
 export default function Search() {
+  const [searchSpec, setSearchSpec] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchVille, setSearchVille] = useState("");
+  const nav = useNavigate();
+
+  const rediriger = () => {
+    nav("/professionnel", { state: { searchName, searchSpec, searchVille } });
+  };
   return (
     <div>
       <div className="search">
-        <input type="search" placeholder="Nom du Professionnel" />
-        <select>
-          <option value="">Spécialité </option>
-          <option value="option1">Spécialité 1</option>
-          <option value="option2">Spécialité 2</option>
-          <option value="option3">Spécialité 3</option>
+        <input
+          type="search"
+          placeholder="Nom du Professionnel"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+        <select
+          value={searchSpec}
+          onChange={(e) => setSearchSpec(e.target.value)}
+        >
+          <option value="">Spécialité</option>
+          {Array.from(new Set(professionnels.map((prof) => prof.spec))).map(
+            (spec, index) => (
+              <option key={index} value={spec}>
+                {spec}
+              </option>
+            )
+          )}
         </select>
-        <select>
-          <option value="">Ville </option>
-          <option value="option1">Ville 1</option>
-          <option value="option2">Ville 2</option>
-          <option value="option3">Ville 3</option>
+        <select
+          value={searchVille}
+          onChange={(e) => setSearchVille(e.target.value)}
+        >
+          <option value="">Ville</option>
+          {Array.from(new Set(professionnels.map((prof) => prof.ville))).map(
+            (ville, index) => (
+              <option key={index} value={ville}>
+                {ville}
+              </option>
+            )
+          )}
         </select>
-        <button>Rechercher</button>
+        <button onClick={rediriger}>Rechercher</button>
       </div>
     </div>
   );

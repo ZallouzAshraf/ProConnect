@@ -6,7 +6,7 @@ export default function Card(props) {
     <div>
       <div className="card">
         <img src={props.img} alt="" />
-        <div className="details">
+        <div className="details-stats">
           <p>{props.title}</p>
           <h4>{props.nombre}</h4>
         </div>
