@@ -57,11 +57,12 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="nav-menu-right">
+            <li>
+              <Link to="/login">Se connecter</Link>
+            </li>
             <hr />
             <li>
-              <Link to="/loginandregister">
-                <button className="btnlogin">Se Connecter</button>
-              </Link>
+              <Link to="/RegisterType">S'inscrire</Link>
             </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>

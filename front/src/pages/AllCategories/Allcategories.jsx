@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Allcategories.css";
 import { data } from "../../Components/Data/data";
 import { useNavigate } from "react-router-dom";
 
 export default function Allcategories() {
   const nav = useNavigate();
-  const [spec, setSpec] = useState();
 
   const rediriger = (item) => {
-    setSpec(item.title);
     nav("/professionnel", { state: { spec: item.title } });
   };
 

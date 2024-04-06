@@ -55,7 +55,7 @@
   display: flex;
   list-style: none;
   text-align: center;
-  margin-right: 250px;
+  margin-right: 160px;
   margin-top: 5px;
   gap: 25px;
   font-size: 22px;
@@ -64,7 +64,15 @@
   display: flex;
   margin-right: 100px;
   gap: 20px;
+  text-align: center;
   list-style: none;
+  margin-top: 4px;
+}
+.nav-menu-right hr {
+  border-left: 1px solid white;
+  width: 0;
+  height: 22px;
+  margin: 0;
 }
 
 .nav-links {
@@ -72,6 +80,7 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
+
   border-bottom: 3px solid transparent;
 }
 .nav-links:hover {
@@ -101,11 +110,6 @@
 .nav-item:hover:after {
   width: 100%;
   background: #b67332;
-}
-
-.nav-item.active {
-  color: #b67332;
-  border: 1px solid #b67332;
 }
 
 .nav-icon {

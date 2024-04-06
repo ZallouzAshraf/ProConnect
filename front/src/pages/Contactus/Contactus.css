@@ -105,7 +105,7 @@ section.left .socialMedia {
   flex-wrap: wrap;
   margin: 22px 0px 20px;
 }
-.socialMedia a {
+.socialMedia p {
   width: 35px;
   height: 35px;
   text-decoration: none;
@@ -115,20 +115,20 @@ section.left .socialMedia {
   background-color: #b67332;
   transition: 0.4s;
 }
-.socialMedia a i {
+.socialMedia p i {
   color: #ddd;
   font-size: 18px;
   line-height: 35px;
   border: 1px solid transparent;
   transition-delay: 0.4s;
 }
-.socialMedia a:hover {
+.socialMedia p:hover {
   transform: translateY(-5px);
   background-color: #2e2e2e;
   color: #b67332;
   border: 1px solid #b67332;
 }
-.socialMedia a:hover i {
+.socialMedia p:hover i {
   color: #b67332;
 }
 

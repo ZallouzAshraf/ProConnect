@@ -42,18 +42,18 @@ export default function Contactus() {
             </div>
           </div>
           <div className="socialMedia">
-            <a href="">
+            <p>
               <i className="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="">
+            </p>
+            <p>
               <i className="fa-brands fa-twitter"></i>
-            </a>
-            <a href="">
+            </p>
+            <p>
               <i className="fa-brands fa-instagram"></i>
-            </a>
-            <a href="">
+            </p>
+            <p>
               <i className="fa-brands fa-linkedin-in"></i>
-            </a>
+            </p>
           </div>
         </section>
 
