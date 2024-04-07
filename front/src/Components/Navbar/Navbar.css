@@ -74,7 +74,22 @@
   height: 22px;
   margin: 0;
 }
-
+.btnlogout {
+  width: 130px;
+  height: 30px;
+  font-size: 16px;
+  margin-left: 70px;
+  font-weight: 500;
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+.btnlogout:hover {
+  background: #fff;
+  color: black;
+  cursor: pointer;
+}
 .nav-links {
   color: #fff;
   text-decoration: none;

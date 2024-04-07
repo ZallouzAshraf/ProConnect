@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Registerpro.css";
 
 export default function Registerpro() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
+  const handleSubmit = () => {
+    console.log("hello");
+  };
   return (
     <div className="reg-container">
       <div className="wrapper">
@@ -39,6 +48,10 @@ export default function Registerpro() {
                 <label>Télécharger votre Diplome</label>
                 <input type="file" className="input" />
               </div>
+              <div className="inputfield">
+                <label>Télécharger votre CIN</label>
+                <input type="file" className="input" />
+              </div>
             </div>
             <div className="rightform">
               <div className="inputfield">
@@ -49,10 +62,6 @@ export default function Registerpro() {
                 <label>Mot de passe </label>
                 <input type="password" className="input" />
               </div>
-              <div className="inputfield">
-                <label>Confirme Mot de passe</label>
-                <input type="password" className="input" />
-              </div>
 
               <div className="inputfield">
                 <label>Code Postal</label>
@@ -60,13 +69,19 @@ export default function Registerpro() {
               </div>
               <div className="inputfield terms">
                 <label className="check">
-                  <input type="checkbox" />
+                  <input type="checkbox" onChange={handleCheckboxChange} />
                   <span className="checkmark"></span>
                 </label>
                 <p>Accepter les termes et conditions</p>
               </div>
               <div className="inputfield">
-                <input type="submit" value="Register" className="btn" />
+                <input
+                  type="submit"
+                  value="Register"
+                  className={` ${!isChecked ? "disabled" : "btn"}`}
+                  onClick={handleSubmit}
+                  disabled={!isChecked}
+                />
               </div>
             </div>
           </div>

@@ -171,6 +171,17 @@
   display: flex;
   gap: 40px;
 }
+.disabled {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 0px;
+  background: #636363;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+}
 
 @media (max-width: 420px) {
   .wrapper .form .inputfield {

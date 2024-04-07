@@ -30,7 +30,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/about"
+                to="/About"
                 className="nav-links"
                 onClick={click ? handleClick : null}
               >
@@ -57,13 +57,27 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="nav-menu-right">
-            <li>
-              <Link to="/login">Se connecter</Link>
-            </li>
-            <hr />
-            <li>
-              <Link to="/RegisterType">S'inscrire</Link>
-            </li>
+            {localStorage.getItem("auth-token") ? (
+              <button
+                className="btnlogout"
+                onClick={() => {
+                  localStorage.removeItem("auth-token");
+                  window.location.replace("/");
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <ul className="nav-menu-right">
+                <li>
+                  <Link to="/login">Se connecter</Link>
+                </li>
+                <hr />
+                <li>
+                  <Link to="/RegisterType">S'inscrire</Link>
+                </li>
+              </ul>
+            )}
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <FaAlignJustify color="white" />

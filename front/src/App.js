@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Registertype from "./pages/Registertype/Registertype";
 import Registerpro from "./pages/Registerpro/Registerpro";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/Register/Professionnel" element={<Registerpro />} />
           <Route path="/allcategories" element={<Allcategories />} />
           <Route path="/professionnel" element={<Professionnel />} />
+          <Route path="/About" element={<About />} />
           <Route path="/Details" element={<Detailsprof />} />
           <Route path="/Contact" element={<Contactus />} />
         </Routes>
