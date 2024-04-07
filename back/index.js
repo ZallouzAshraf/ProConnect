@@ -10,9 +10,12 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+
 // DataBase Connection
 mongoose.connect(
-  "mongodb+srv://ashrafjallouz:Achrafproconnect@cluster0.8z53taw.mongodb.net/proconnect"
+  `mongodb+srv://${username}:${password}@cluster0.8z53taw.mongodb.net/proconnect`
 );
 
 //Schema for the User model
