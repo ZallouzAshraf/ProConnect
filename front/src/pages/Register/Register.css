@@ -183,6 +183,13 @@
   outline: none;
 }
 
+.uploaded_photo {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
 @media (max-width: 420px) {
   .wrapper .form .inputfield {
     flex-direction: column;

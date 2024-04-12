@@ -12,6 +12,10 @@ import Register from "./pages/Register/Register";
 import Registertype from "./pages/Registertype/Registertype";
 import Registerpro from "./pages/Registerpro/Registerpro";
 import About from "./pages/About/About";
+import Profil from "./pages/Profil/Profil";
+import Rendezvous from "./Components/Rendezvous/Rendezvous";
+import Updateprofil from "./Components/Updateprofil/Updateprofil";
+import Messages from "./Components/Messages/Messages";
 
 function App() {
   return (
@@ -28,7 +32,11 @@ function App() {
           <Route path="/professionnel" element={<Professionnel />} />
           <Route path="/About" element={<About />} />
           <Route path="/Details" element={<Detailsprof />} />
+          <Route path="/Profil" element={<Profil />} />
           <Route path="/Contact" element={<Contactus />} />
+          <Route path="/ListRendezVous" element={<Rendezvous />} />
+          <Route path="/UpdateProfil" element={<Updateprofil />} />
+          <Route path="/Messages" element={<Messages />} />
         </Routes>
       </BrowserRouter>
     </>

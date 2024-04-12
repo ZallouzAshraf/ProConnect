@@ -18,6 +18,28 @@ mongoose.connect(
   `mongodb+srv://${username}:${password}@cluster0.8z53taw.mongodb.net/proconnect`
 );
 
+//Image Storage
+const storage = multer.diskStorage({
+  destination: "./uploadImages",
+  filename: (req, file, cb) => {
+    return cb(
+      null,
+      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+//EndPoint For Images
+app.use("/uploadImages", express.static("uploadImages"));
+app.post("/upload", upload.single("image"), (req, res) => {
+  res.json({
+    success: 1,
+    image_url: `http://localhost:${port}/uploadImages/${req.file.filename}`,
+  });
+});
+
 //Schema for the User model
 const User = mongoose.model("User", {
   nom: {
@@ -50,6 +72,10 @@ const User = mongoose.model("User", {
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -74,6 +100,7 @@ app.post("/register", async (req, res) => {
     adresse: req.body.adresse,
     email: req.body.email,
     password: req.body.password,
+    image: req.body.image,
   });
 
   //Saving User in DB
@@ -86,6 +113,34 @@ app.post("/register", async (req, res) => {
   };
   const token = jwt.sign(data, "secret_token");
   res.json({ success: true, token });
+});
+
+//Verify token
+const verifyToken = async (req, res, next) => {
+  const token = req.header("auth-token");
+  if (!token) {
+    res.status(401).send({ errors: "Session Expired" });
+  } else {
+    try {
+      const data = jwt.verify(token, "secret_token");
+      req.user = data.user;
+      next();
+    } catch (error) {
+      res.status(401).send({ errors: "Use Valid Token" });
+    }
+  }
+};
+
+//Get User
+app.get("/user", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).send("Utilisateur Introuvable");
+
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(500).send("Erreur interne du serveur");
+  }
 });
 
 //Endpoint Login User
@@ -106,6 +161,32 @@ app.post("/login", async (req, res) => {
     }
   } else {
     res.json({ success: false, errors: " Email incorrect" });
+  }
+});
+
+// update user
+app.put("/updateUser", async (req, res) => {
+  try {
+    const user = await User.findById(req.body._id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, errors: "Utilisateur non trouvé" });
+    }
+
+    user.nom = req.body.nom || user.nom;
+    user.prenom = req.body.prenom || user.prenom;
+    user.sexe = req.body.sexe || user.sexe;
+    user.telephone = req.body.telephone || user.telephone;
+    user.adresse = req.body.adresse || user.adresse;
+    user.email = req.body.email || user.email;
+    user.password = req.body.password || user.password;
+    user.image = req.body.image || user.image;
+
+    const updatedUser = await user.save();
+    res.json({ success: true, updatedUser });
+  } catch (error) {
+    res.status(500).json({ success: false, errors: "Internal server error" });
   }
 });
 

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Register.css";
+import upload_icon from "../../Assets/upload_img.svg";
 
 export default function Register() {
+  const [image, setImage] = useState();
   const [UserData, setUserData] = useState({
     nom: "",
     prenom: "",
@@ -10,11 +12,14 @@ export default function Register() {
     adresse: "",
     email: "",
     password: "",
+    image: "",
   });
+  const imageHandler = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const changeHandler = (e) => {
     setUserData({ ...UserData, [e.target.name]: e.target.value });
-    console.log(UserData);
   };
 
   const [isChecked, setIsChecked] = useState(false);
@@ -22,25 +27,54 @@ export default function Register() {
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
-  const register = async () => {
-    let responseData;
-    await fetch("http://localhost:4000/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/form-data",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(UserData),
-    })
-      .then((response) => response.json())
-      .then((data) => (responseData = data));
-    if (responseData.success) {
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
-    } else {
-      alert(responseData.errors);
+
+  const registerUser = async () => {
+    let responseData = {};
+    let user = { ...UserData };
+    let formData = new FormData();
+    formData.append("image", image);
+
+    try {
+      // Upload image
+      const uploadResponse = await fetch("http://localhost:4000/upload", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+      const uploadData = await uploadResponse.json();
+      responseData = uploadData;
+
+      if (responseData.success) {
+        user.image = responseData.image_url;
+
+        // Register user
+        const registerResponse = await fetch("http://localhost:4000/register", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+        const registerData = await registerResponse.json();
+
+        if (registerData.success) {
+          localStorage.setItem("auth-token", registerData.token);
+          window.location.replace("/");
+        } else {
+          alert(registerData.errors);
+        }
+      } else {
+        alert("Échec du téléchargement de l'image");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Une erreur s'est produite. Veuillez réessayer");
     }
   };
+
   return (
     <div className="reg-container">
       <div className="wrapper">
@@ -78,7 +112,7 @@ export default function Register() {
                   >
                     <option value="">Select</option>
                     <option value="male">Homme</option>
-                    <option value="female">Femme</option>
+                    <option value="Female">Femme</option>
                   </select>
                 </div>
               </div>
@@ -123,7 +157,22 @@ export default function Register() {
                   onChange={changeHandler}
                 />
               </div>
-
+              <div className="inputfield">
+                <label htmlFor="file-input">
+                  <img
+                    src={image ? URL.createObjectURL(image) : upload_icon}
+                    alt=""
+                    className="uploaded_photo"
+                  />
+                </label>
+                <input
+                  onChange={imageHandler}
+                  type="file"
+                  name="image"
+                  id="file-input"
+                  hidden
+                />
+              </div>
               <div className="inputfield terms">
                 <label className="check">
                   <input
@@ -139,9 +188,11 @@ export default function Register() {
                 <input
                   type="submit"
                   value="Register"
-                  className={`btn ${!isChecked ? "disabled" : ""}`}
-                  onClick={() => register()}
+                  onClick={() => {
+                    registerUser();
+                  }}
                   disabled={!isChecked}
+                  className={!isChecked ? "disabled" : "btn"}
                 />
               </div>
             </div>

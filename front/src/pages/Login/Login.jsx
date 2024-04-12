@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import axios from "axios";
 
 export default function Login() {
   const [UserData, setUserData] = useState({
@@ -18,22 +19,28 @@ export default function Login() {
   };
 
   const login = async () => {
-    let responseData;
-    await fetch("http://localhost:4000/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/form-data",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(UserData),
-    })
-      .then((response) => response.json())
-      .then((data) => (responseData = data));
-    if (responseData.success) {
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
-    } else {
-      alert(responseData.errors);
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/login",
+        JSON.stringify(UserData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const responseData = response.data;
+
+      if (responseData.success) {
+        localStorage.setItem("auth-token", responseData.token);
+        window.location.replace("/");
+      } else {
+        alert(responseData.errors);
+      }
+    } catch (error) {
+      console.error("Error occurred during login:", error);
+      alert(error);
     }
   };
   return (

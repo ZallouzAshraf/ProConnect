@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/logonv.png";
 import { FaAlignJustify } from "react-icons/fa6";
+import utilisateur from "../../Assets/utilisateur.png";
 
 export default function Navbar() {
   const [click, setClick] = React.useState(false);
@@ -58,15 +59,20 @@ export default function Navbar() {
           </ul>
           <ul className="nav-menu-right">
             {localStorage.getItem("auth-token") ? (
-              <button
-                className="btnlogout"
-                onClick={() => {
-                  localStorage.removeItem("auth-token");
-                  window.location.replace("/");
-                }}
-              >
-                Logout
-              </button>
+              <div className="profil-logout">
+                <Link to="/Profil">
+                  <img src={utilisateur} alt="" className="profilbtn" />
+                </Link>
+                <button
+                  className="btnlogout"
+                  onClick={() => {
+                    localStorage.removeItem("auth-token");
+                    window.location.replace("/");
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <ul className="nav-menu-right">
                 <li>

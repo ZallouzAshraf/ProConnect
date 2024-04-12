@@ -74,11 +74,22 @@
   height: 22px;
   margin: 0;
 }
+.profilbtn {
+  width: 60px;
+  height: auto;
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+.profil-logout {
+  display: flex;
+  gap: 10px;
+}
 .btnlogout {
   width: 130px;
   height: 30px;
   font-size: 16px;
-  margin-left: 70px;
+  margin-left: 20px;
+  margin-top: 15px;
   font-weight: 500;
   color: white;
   background: transparent;
@@ -86,9 +97,9 @@
   border-radius: 20px;
 }
 .btnlogout:hover {
-  background: #fff;
-  color: black;
   cursor: pointer;
+  background: white;
+  color: #000;
 }
 .nav-links {
   color: #fff;
@@ -186,5 +197,15 @@
     font-size: 1.8rem;
     cursor: pointer;
     color: #40ffd6;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .btnlogout {
+    width: 100px;
+    height: 28px;
+    font-size: 15px;
+  }
+  .profil-logout {
+    margin-left: -60px;
   }
 }

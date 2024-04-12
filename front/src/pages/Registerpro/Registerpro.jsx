@@ -78,7 +78,7 @@ export default function Registerpro() {
                 <input
                   type="submit"
                   value="Register"
-                  className={` ${!isChecked ? "disabled" : "btn"}`}
+                  className={!isChecked ? "disabled" : "btn"}
                   onClick={handleSubmit}
                   disabled={!isChecked}
                 />
