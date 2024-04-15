@@ -62,6 +62,7 @@ export default function Register() {
 
         if (registerData.success) {
           localStorage.setItem("auth-token", registerData.token);
+          localStorage.setItem("user-type", registerData.type);
           window.location.replace("/");
         } else {
           alert(registerData.errors);

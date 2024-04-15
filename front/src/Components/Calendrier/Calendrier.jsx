@@ -25,7 +25,6 @@ export default function Calendrier() {
           <StaticDatePicker
             value={selectedDate}
             onChange={handleDateChange}
-            renderInput={(params) => <input {...params} />}
             className="pickd"
           />
         </DemoItem>

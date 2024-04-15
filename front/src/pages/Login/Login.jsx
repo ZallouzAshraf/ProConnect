@@ -4,11 +4,6 @@ import axios from "axios";
 
 export default function Login() {
   const [UserData, setUserData] = useState({
-    nom: "",
-    prenom: "",
-    sexe: "",
-    telephone: "",
-    adresse: "",
     email: "",
     password: "",
   });

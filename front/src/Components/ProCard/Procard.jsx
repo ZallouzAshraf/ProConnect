@@ -5,11 +5,19 @@ import { GiPositionMarker } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 
 export default function Procard(props) {
+  const authToken = localStorage.getItem("auth-token");
   const nav = useNavigate();
-  const { nom, ville, spec, genre } = props;
+  const { nom, prenom, ville, spec, genre, phone } = props;
 
   const rediriger = () => {
-    nav("/Details", { state: { nom, ville, spec, genre } });
+    if (authToken) {
+      nav("/Details", {
+        state: { nom, prenom, ville, spec, genre, phone },
+      });
+    } else {
+      alert("Vous devez Connectez !");
+      nav("/login");
+    }
   };
   return (
     <div>
@@ -17,7 +25,11 @@ export default function Procard(props) {
         <div className="info">
           <img src={props.img} alt="profil" />
           <div className="details">
-            <h4 onClick={rediriger}>{props.nom}</h4>
+            <div className="det-inf">
+              <h4>{props.nom}</h4>
+              <h4>{props.prenom}</h4>
+            </div>
+
             <h3>{props.spec}</h3>
             <p>
               <GiPositionMarker />
@@ -25,7 +37,7 @@ export default function Procard(props) {
             </p>
           </div>
           <div>
-            <button>
+            <button onClick={rediriger}>
               <FaCalendarAlt /> Prendre Rendez-vous
             </button>
           </div>
@@ -33,7 +45,12 @@ export default function Procard(props) {
         <hr />
         <div className="description">
           <h2>description : </h2>
-          <p>{props.description}</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+            pariatur facilis, quisquam atque perspiciatis et nemo! Velit,
+            tenetur iusto quis inventore, eos laboriosam minus quia omnis
+            necessitatibus illo, vitae numquam.
+          </p>
         </div>
       </div>
     </div>

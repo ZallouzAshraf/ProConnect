@@ -15,12 +15,12 @@ export default function Updateprofil() {
     adresse: "",
     email: "",
     password: "",
-    image: "",
   });
 
   const changeHandler = (e) => {
     setNewdata({ ...Newdata, [e.target.name]: e.target.value });
   };
+
   const updateUser = async () => {
     try {
       const response = await axios.put(
@@ -45,6 +45,7 @@ export default function Updateprofil() {
       alert("Échec de la mise à jour de l'utilisateur. Veuillez réessayer.");
     }
   };
+
   const getUserinfo = async () => {
     try {
       const response = await fetch("http://localhost:4000/user", {
@@ -173,6 +174,7 @@ export default function Updateprofil() {
                     />
                   </div>
                 </div>
+
                 <div className="inputbtn">
                   <input type="submit" value="Modifier" onClick={updateUser} />
                 </div>

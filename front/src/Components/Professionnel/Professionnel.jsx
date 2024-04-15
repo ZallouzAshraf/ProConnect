@@ -5,21 +5,44 @@ import { professionnels } from "../Data/data";
 import { useLocation } from "react-router-dom";
 import homme from "../../Assets/homme.png";
 import femme from "../../Assets/femme.png";
+import axios from "axios";
 
 export default function Professionnel() {
   const { state } = useLocation();
   const { searchName, searchSpec, searchVille, spec } = state || {};
   const [Name, setName] = useState(searchName || "");
+  const [prenom, setprenom] = useState("");
   const [Spec, setSpec] = useState(spec || searchSpec || "");
   const [Ville, setVille] = useState(searchVille || "");
   const [Genre, setGenre] = useState("");
+  const [professionals, setProfessionals] = useState([]);
 
-  const filteredProfessionnels = professionnels.filter((prof) => {
+  const fetchProfessionals = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/professionals");
+      setProfessionals(response.data.data);
+    } catch (error) {
+      console.log("Erreur");
+    }
+  };
+
+  useEffect(() => {
+    fetchProfessionals();
+  }, []);
+  const resetFilters = () => {
+    setName("");
+    setSpec("");
+    setVille("");
+    setGenre("");
+    setprenom("");
+  };
+  const filteredProfessionnels = professionals.filter((prof) => {
     return (
       prof.nom.toLowerCase().includes(Name.toLowerCase()) &&
-      (Spec === "" || prof.spec === Spec) &&
+      prof.prenom.toLowerCase().includes(prenom.toLowerCase()) &&
+      (Spec === "" || prof.profession === Spec) &&
       (Ville === "" || prof.ville === Ville) &&
-      (Genre === "" || prof.genre === Genre)
+      (Genre === "" || prof.sexe === Genre)
     );
   });
 
@@ -47,15 +70,21 @@ export default function Professionnel() {
             value={Name}
             onChange={(e) => setName(e.target.value)}
           />
+          <input
+            type="search"
+            placeholder="Prénom du Professionnel"
+            value={prenom}
+            onChange={(e) => setprenom(e.target.value)}
+          />
           <select value={Spec} onChange={(e) => setSpec(e.target.value)}>
             <option value="">Spécialité</option>
-            {Array.from(new Set(professionnels.map((prof) => prof.spec))).map(
-              (spec, index) => (
-                <option key={index} value={spec}>
-                  {spec}
-                </option>
-              )
-            )}
+            {Array.from(
+              new Set(professionals.map((prof) => prof.profession))
+            ).map((profession, index) => (
+              <option key={index} value={profession}>
+                {profession}
+              </option>
+            ))}
           </select>
           <select value={Ville} onChange={(e) => setVille(e.target.value)}>
             <option value="">Ville</option>
@@ -69,19 +98,21 @@ export default function Professionnel() {
           </select>
           <select value={Genre} onChange={(e) => setGenre(e.target.value)}>
             <option value="">Genre</option>
-            <option value="Homme">Homme</option>
-            <option value="Femme">Femme</option>
+            <option value="male">Homme</option>
+            <option value="Female">Femme</option>
           </select>
-          <button>Rechercher</button>
+          <button onClick={resetFilters}>Réinitialiser</button>
         </div>
         <div className="search-result">
           {filteredProfessionnels.map((item, index) => {
             return (
               <Procard
-                img={item.genre === "Homme" ? homme : femme}
+                img={item.sexe === "male" ? homme : femme}
                 key={index}
                 nom={item.nom}
-                spec={item.spec}
+                prenom={item.prenom}
+                phone={item.telephone}
+                spec={item.profession}
                 ville={item.ville}
                 description={item.description}
                 genre={item.genre}

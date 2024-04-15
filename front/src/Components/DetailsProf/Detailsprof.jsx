@@ -9,10 +9,11 @@ import chat from "../../Assets/chat.png";
 import call from "../../Assets/appeler.png";
 import clock from "../../Assets/clock.png";
 import Calendrier from "../Calendrier/Calendrier";
+import Modal from "../Modal/Modal";
 
 export default function Detailsprof() {
   const { state } = useLocation();
-  const { nom, ville, spec, genre } = state || {};
+  const { nom, prenom, ville, spec, genre, phone } = state || {};
 
   return (
     <div>
@@ -21,17 +22,14 @@ export default function Detailsprof() {
           <img src={genre === "Homme" ? homme : femme} alt="" />
         </div>
         <div className="info-professionnel">
-          <h4>{nom}</h4>
+          <h4>
+            {nom} {prenom}
+          </h4>
           <h3>{spec}</h3>
           <p>
             <GiPositionMarker />
             {ville}
           </p>
-        </div>
-        <div className="rdv">
-          <button>
-            <FaCalendarAlt /> Prendre Rendez-vous
-          </button>
         </div>
       </div>
       <div className="info-contact">
@@ -39,11 +37,11 @@ export default function Detailsprof() {
           <h1>Informations Contact :</h1>
           <div className="professionnel-btn">
             <img src={chat} alt="" />
-            <button className="btn-msg">Envoyer un message </button>
+            <button className="btnformsg"></button>
           </div>
           <div className="professionnel-btn">
             <img src={call} alt="" />
-            <button className="btn-num">Afficher le numéro</button>
+            <Modal phone={phone} />
           </div>
 
           <div className="horaire-prof">
@@ -132,6 +130,7 @@ export default function Detailsprof() {
             <input type="radio" id="time14" name="time" value="16:30" />
             <label htmlFor="time14">16:30</label>
           </div>
+          <button className="Btn"></button>
         </div>
       </div>
     </div>

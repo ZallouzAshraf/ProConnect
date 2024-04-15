@@ -76,3 +76,7 @@ a {
 .details h4:hover {
   color: #ab41f1;
 }
+.det-inf h4 {
+  float: left;
+  margin-right: -45px;
+}
