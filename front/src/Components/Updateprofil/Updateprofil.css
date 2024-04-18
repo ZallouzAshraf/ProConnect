@@ -108,6 +108,8 @@
   color: white;
   background: #b67332;
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .upd-container .form .inputfield label {

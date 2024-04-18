@@ -110,12 +110,13 @@ export default function Professionnel() {
                 img={item.sexe === "male" ? homme : femme}
                 key={index}
                 nom={item.nom}
+                email={item.email}
                 prenom={item.prenom}
                 phone={item.telephone}
                 spec={item.profession}
                 ville={item.ville}
                 description={item.description}
-                genre={item.genre}
+                genre={item.sexe}
               />
             );
           })}

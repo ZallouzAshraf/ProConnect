@@ -29,6 +29,8 @@ export default function Login() {
 
       if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
+        localStorage.setItem("userId", responseData.id);
+
         window.location.replace("/");
       } else {
         alert(responseData.errors);

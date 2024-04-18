@@ -127,8 +127,15 @@ body.active-modal {
   top: 5.6em;
   left: 0;
   right: 0;
+  letter-spacing: 4px;
   color: rgb(255, 255, 255);
   font-weight: 600;
+}
+.infotop img {
+  width: 25%;
+  height: 25%;
+  margin-bottom: 40px;
+  margin-top: -40px;
 }
 
 .name {

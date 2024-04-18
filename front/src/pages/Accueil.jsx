@@ -11,33 +11,33 @@ export default function Accueil() {
   const authToken = localStorage.getItem("auth-token");
   const [userData, setuserData] = useState({});
 
-  const getUserinfo = async () => {
-    try {
-      const response = await fetch("http://localhost:4000/user", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": authToken,
-        },
-      });
-
-      if (response.ok) {
-        const userData = await response.json();
-        setuserData(userData);
-      } else {
-        console.error("Failed to fetch user data:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error.message);
-    }
-  };
-
   useEffect(() => {
+    const getUserinfo = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/user", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setuserData(userData);
+        } else {
+          console.error("Failed to fetch user data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error.message);
+      }
+    };
+
     getUserinfo();
-  }, []);
+  }, [authToken]);
   return (
     <div>
-      {userData.verified == "false" ? (
+      {userData.verified === "false" ? (
         <Verifpage />
       ) : (
         <div>

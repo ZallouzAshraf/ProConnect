@@ -5,17 +5,16 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import "./Calendrier.css";
 
-export default function Calendrier() {
-  const [selectedDate] = useState(null);
+export default function Calendrier({ onDateChange }) {
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (newDate) => {
     const day = newDate.$d.getDate();
     const month = newDate.$d.getMonth() + 1;
     const year = newDate.$d.getFullYear();
 
-    console.log("Selected Day:", day);
-    console.log("Selected Month:", month);
-    console.log("Selected Year:", year);
+    setSelectedDate(newDate);
+    onDateChange(day, month, year);
   };
 
   return (

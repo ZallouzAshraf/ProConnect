@@ -165,6 +165,25 @@ const Prof = mongoose.model("Prof", {
   },
 });
 
+const Rendezvous = mongoose.model("Rendezvous", {
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+  professionalId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+});
+
 // Endpoint Register Client
 app.post("/register", async (req, res) => {
   let check = await User.findOne({ email: req.body.email });
@@ -256,8 +275,12 @@ app.get("/user", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     const prof = await Prof.findById(req.user.id);
-    let type = !user ? prof : user;
-    if (!type) return res.status(404).send("Utilisateur Introuvable");
+
+    if (!user && !prof) {
+      return res.status(404).send("Utilisateur Introuvable");
+    }
+
+    let type = user ? user : prof;
 
     res.status(200).send(type);
   } catch (err) {
@@ -279,7 +302,7 @@ app.post("/login", async (req, res) => {
         },
       };
       const token = jwt.sign(data, "secret_token");
-      res.json({ success: true, token });
+      res.json({ success: true, token, id: type.id });
     } else {
       res.json({ success: false, errors: "Mot de passe incorrect" });
     }
@@ -328,6 +351,67 @@ app.get("/professionals", async (req, res) => {
       error: error.message,
     });
   }
+});
+
+//Get UserId
+app.get("/getUserId", async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const user = await User.findOne({ email });
+    const prof = await Prof.findOne({ email });
+
+    if (!user && !prof) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const userId = user ? user._id.toString() : prof._id.toString();
+
+    res.status(200).json({ userId });
+  } catch (error) {
+    console.error("Error retrieving userId:", error);
+    res.status(500).json({ message: "Error retrieving userId" });
+  }
+});
+
+//Save Rendezvous
+app.post("/saveRdv", async (req, res) => {
+  const { userId, professionalId, day, month, year, time } = req.body;
+
+  try {
+    const newRendezvous = new Rendezvous({
+      userId: userId,
+      professionalId: professionalId,
+      date: `${year}-${month}-${day}`,
+      time: time,
+    });
+
+    await newRendezvous.save();
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error saving rendezvous:", error);
+    res.json({ success: false, errors: "Error saving rendezvous" });
+  }
+});
+
+//Get Rendezvous with id
+app.get("/getRdv", async (req, res) => {
+  const { professionalId } = req.query;
+
+  if (!professionalId) {
+    return res.status(400).json({ message: "ProfessionnelId is required" });
+  }
+
+  const listrdv = await Rendezvous.find({ professionalId });
+  if (!listrdv) {
+    return res.status(404).json({ message: "Aucun Rendez-vous" });
+  }
+  res.status(200).json({ listrdv });
 });
 
 app.listen(port, () => {

@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 export default function Procard(props) {
   const authToken = localStorage.getItem("auth-token");
   const nav = useNavigate();
-  const { nom, prenom, ville, spec, genre, phone } = props;
+  const { nom, prenom, ville, spec, genre, phone, email } = props;
 
   const rediriger = () => {
     if (authToken) {
       nav("/Details", {
-        state: { nom, prenom, ville, spec, genre, phone },
+        state: { nom, prenom, ville, spec, genre, phone, email },
       });
     } else {
       alert("Vous devez Connectez !");
