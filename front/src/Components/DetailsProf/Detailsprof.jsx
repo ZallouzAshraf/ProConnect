@@ -16,6 +16,10 @@ export default function Detailsprof() {
   const { nom, prenom, ville, spec, genre, phone, email } = state || {};
   const [selectedTime, setSelectedTime] = useState("");
   const [userId, setUserId] = useState("");
+  const [userNom, setuserNom] = useState("");
+  const [userPrenom, setuserPrenom] = useState("");
+  const [userProfession, setuserProfession] = useState("");
+
   const [listrdv, setlistrdv] = useState([]);
   const loggeduserid = localStorage.getItem("userId");
 
@@ -45,6 +49,9 @@ export default function Detailsprof() {
         const data = await response.json();
         if (data.userId) {
           setUserId(data.userId);
+          setuserNom(data.usernom);
+          setuserPrenom(data.userprenom);
+          setuserProfession(data.metier);
         }
       } catch (error) {
         console.error("Error fetching userId:", error);
@@ -53,8 +60,9 @@ export default function Detailsprof() {
 
     if (email) {
       fetchUserId();
+      console.log(userPrenom);
     }
-  }, [email]);
+  }, [email, userNom, userPrenom, userProfession]);
 
   const saverdv = async () => {
     if (!userId) {
@@ -65,6 +73,9 @@ export default function Detailsprof() {
     const rendezvousData = {
       userId: loggeduserid,
       professionalId: userId,
+      professionalNom: userNom,
+      professionalPrenom: userPrenom,
+      professionalMetier: userProfession,
       day: selectedDate.day,
       month: selectedDate.month,
       year: selectedDate.year,
@@ -79,7 +90,10 @@ export default function Detailsprof() {
     }));
 
     const dateexists = filteredListrdv.some(
-      (item) => item.date === formattedate && item.time === rendezvousData.time
+      (item) =>
+        item.professionalId === rendezvousData.professionalId &&
+        item.date === formattedate &&
+        item.time === rendezvousData.time
     );
 
     if (!dateexists) {
@@ -145,6 +159,7 @@ export default function Detailsprof() {
           <h4>
             {nom} {prenom}
           </h4>
+          <div></div>
           <h3>{spec}</h3>
           <p>
             <GiPositionMarker />
@@ -213,7 +228,7 @@ export default function Detailsprof() {
                   -------------------------------------------------------
                 </span>
                 <img className="clock" src={clock} alt="" />
-                <span>08:00 - 14:00</span>
+                <span>08:00 - 18:00</span>
               </li>
             </ul>
           </div>
@@ -335,10 +350,6 @@ export default function Detailsprof() {
             <label htmlFor="time14">16:30</label>
           </div>
           <button className="Btn" onClick={saverdv}></button>
-          <h1>{selectedTime}</h1>
-          <h1>
-            {selectedDate.day}/{selectedDate.month}/{selectedDate.year}
-          </h1>
         </div>
       </div>
     </div>

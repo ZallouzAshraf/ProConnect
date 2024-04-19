@@ -31,10 +31,10 @@ function App() {
           <Route path="/allcategories" element={<Allcategories />} />
           <Route path="/professionnel" element={<Professionnel />} />
           <Route path="/About" element={<About />} />
-          <Route path="/Details" element={<Detailsprof />} />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/Contact" element={<Contactus />} />
           <Route path="/ListRendezVous" element={<Rendezvous />} />
+          <Route path="/Details" element={<Detailsprof />} />
           <Route path="/UpdateProfil" element={<Updateprofil />} />
           <Route path="/Messages" element={<Messages />} />
         </Routes>

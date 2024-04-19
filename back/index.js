@@ -174,6 +174,18 @@ const Rendezvous = mongoose.model("Rendezvous", {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
+  professionalNom: {
+    type: String,
+    required: true,
+  },
+  professionalPrenom: {
+    type: String,
+    required: true,
+  },
+  professionalMetier: {
+    type: String,
+    required: true,
+  },
   date: {
     type: String,
     required: true,
@@ -370,8 +382,11 @@ app.get("/getUserId", async (req, res) => {
     }
 
     const userId = user ? user._id.toString() : prof._id.toString();
+    const usernom = user ? user.nom.toString() : prof.nom.toString();
+    const userprenom = user ? user.prenom.toString() : prof.prenom.toString();
+    const metier = prof.profession.toString();
 
-    res.status(200).json({ userId });
+    res.status(200).json({ userId, usernom, userprenom, metier });
   } catch (error) {
     console.error("Error retrieving userId:", error);
     res.status(500).json({ message: "Error retrieving userId" });
@@ -380,12 +395,25 @@ app.get("/getUserId", async (req, res) => {
 
 //Save Rendezvous
 app.post("/saveRdv", async (req, res) => {
-  const { userId, professionalId, day, month, year, time } = req.body;
+  const {
+    userId,
+    professionalId,
+    professionalNom,
+    professionalPrenom,
+    professionalMetier,
+    day,
+    month,
+    year,
+    time,
+  } = req.body;
 
   try {
     const newRendezvous = new Rendezvous({
       userId: userId,
       professionalId: professionalId,
+      professionalNom: professionalNom,
+      professionalPrenom: professionalPrenom,
+      professionalMetier: professionalMetier,
       date: `${year}-${month}-${day}`,
       time: time,
     });
@@ -412,6 +440,42 @@ app.get("/getRdv", async (req, res) => {
     return res.status(404).json({ message: "Aucun Rendez-vous" });
   }
   res.status(200).json({ listrdv });
+});
+
+//Get Rendezvous for the loggedUser
+app.get("/getLoggedRdv", async (req, res) => {
+  const { loggeduserid } = req.query;
+
+  if (!loggeduserid) {
+    return res.status(400).json({ message: "UserId is required" });
+  }
+
+  try {
+    const listrdv = await Rendezvous.find({ userId: loggeduserid });
+
+    if (!listrdv.length) {
+      return res.status(404).json({ message: "Aucun Rendez-vous" });
+    }
+
+    res.status(200).json(listrdv);
+  } catch (error) {
+    console.error("Error fetching rendezvous:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//Delete RendezVous
+app.delete("/deleteRdv/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedRdv = await Rendezvous.findByIdAndDelete(id);
+    if (!deletedRdv) {
+      return res.status(404).json({ message: "RendezVous not found" });
+    }
+    res.status(200).json({ message: "RendezVous deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting rendezvous", error });
+  }
 });
 
 app.listen(port, () => {

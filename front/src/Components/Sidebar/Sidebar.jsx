@@ -8,6 +8,7 @@ import "./Sidebar.css";
 export default function Sidebar() {
   const authToken = localStorage.getItem("auth-token");
   const [userData, setuserData] = useState({});
+  const [activeItem, setActiveItem] = useState(null);
 
   const getUserinfo = async () => {
     try {
@@ -33,6 +34,10 @@ export default function Sidebar() {
   useEffect(() => {
     getUserinfo();
   }, []);
+
+  const handleItemClick = (itemName) => {
+    setActiveItem(itemName);
+  };
   return (
     <div className="sidebar">
       {userData.verified == "false" ? (

@@ -9,7 +9,7 @@ import "react-slideshow-image/dist/styles.css";
 export default function Slider() {
   const slideProperties = {
     duration: 2500,
-    transitionDuration: 1500,
+    transitionDuration: 1000,
     infinite: true,
     indicators: false,
     arrows: true,
