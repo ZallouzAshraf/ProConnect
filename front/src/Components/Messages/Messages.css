@@ -1,3 +1,214 @@
-.profil-content {
+/* Base styles */
+.flex {
   display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.overflow-scroll {
+  overflow-y: auto;
+}
+
+/* Background colors */
+.bg-secondary {
+  background-color: gray;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-light {
+  background-color: gray;
+}
+
+/* Text styles */
+.text-primary {
+  color: black;
+  font-size: 20px;
+}
+
+.text-lg {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.my-8 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.mx-14 {
+  margin-left: 56px;
+  margin-right: 56px;
+}
+
+.mt-10 {
+  margin-top: 20px;
+}
+
+.ml-8 {
+  margin-left: 32px;
+}
+
+.ml-6 {
+  margin-left: 24px;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mt-24 {
+  margin-top: 96px;
+}
+
+.py-8 {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.px-14 {
+  padding-left: 56px;
+  padding-right: 56px;
+}
+
+.p-4 {
+  padding: 9px;
+}
+
+/* Width and height */
+.w-screen {
+  width: 100vw;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-60 {
+  width: 80px;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-80 {
+  height: 80px;
+}
+
+.h-60 {
+  height: 80px;
+}
+
+.h-75 {
+  height: 75%;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.rounded-full {
+  border-radius: 50%;
+}
+
+.rounded-xl {
+  border-radius: 12px;
+}
+
+/* Cursor */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+/* Messages and Conversation */
+.border-b-gray-300 {
+  border-bottom: 1px solid #d1d5db;
+}
+
+/* Input and Buttons */
+.border-0 {
+  border: none;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+}
+
+/* Miscellaneous */
+.text-center {
+  text-align: center;
+}
+
+/* Messages specific */
+.max-w-40 {
+  max-width: 40%;
+}
+
+.class1 {
+  background-color: #007bff;
+  color: #ffffff;
+  border-top-left-radius: 1rem;
+  margin-left: auto;
+}
+.class2 {
+  border-top-right-radius: 1rem;
+  background-color: #6f767c;
+}
+.msg-box {
+  height: 75%;
+  width: 90%;
+  background: rgba(128, 128, 128, 0.166);
+  margin-top: 20px;
+  overflow-y: scroll;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.messageclass {
+  max-width: 10rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+.imgdiscu {
+  width: 60px;
+  height: 60px;
 }

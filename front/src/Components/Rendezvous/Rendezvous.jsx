@@ -6,20 +6,26 @@ import { MdDelete } from "react-icons/md";
 
 export default function Rendezvous() {
   const [loggeduserid] = useState(localStorage.getItem("userId") || "");
+  const [role] = useState(localStorage.getItem("role") || "");
   const [listrdv, setlistrdv] = useState([]);
 
-  const fetchrdv = async () => {
+  const fetchRdv = async () => {
     if (!loggeduserid) {
       console.log("UserId is required");
       return;
     }
     try {
-      const response = await axios.get(
-        `http://localhost:4000/getLoggedRdv?loggeduserid=${loggeduserid}`
-      );
-
+      let response;
+      if (role === "client") {
+        response = await axios.get(
+          `http://localhost:4000/getLoggedRdv?loggeduserid=${loggeduserid}`
+        );
+      } else {
+        response = await axios.get(
+          `http://localhost:4000/getProfRdv?loggeduserid=${loggeduserid}`
+        );
+      }
       const data = response.data;
-
       if (data && data.length > 0) {
         setlistrdv(data);
       } else {
@@ -30,9 +36,10 @@ export default function Rendezvous() {
       console.error("Error fetching rendezvous:", error);
     }
   };
+
   useEffect(() => {
-    fetchrdv();
-  }, [loggeduserid]);
+    fetchRdv();
+  }, [loggeduserid, role]);
 
   const DeleteRdv = async (id) => {
     try {
@@ -40,13 +47,12 @@ export default function Rendezvous() {
         `http://localhost:4000/deleteRdv/${id}`
       );
       if (response.status === 200) {
-        fetchrdv();
+        fetchRdv();
       }
     } catch (error) {
       console.error("Error deleting rendezvous:", error);
     }
   };
-
   return (
     <div className="profil-content">
       <div>
@@ -56,6 +62,8 @@ export default function Rendezvous() {
         <table>
           <thead>
             <tr>
+              <th>Nom Client</th>
+              <th>Prénom Client</th>
               <th>Nom Profesionnel</th>
               <th>Prénom Profesionnel</th>
               <th>Profession</th>
@@ -68,6 +76,8 @@ export default function Rendezvous() {
             {listrdv && listrdv.length > 0 ? (
               listrdv.map((item, index) => (
                 <tr key={index}>
+                  <td>{item.clientNom}</td>
+                  <td>{item.clientprenom}</td>
                   <td>{item.professionalNom}</td>
                   <td>{item.professionalPrenom}</td>
                   <td>{item.professionalMetier}</td>

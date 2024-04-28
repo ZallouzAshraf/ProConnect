@@ -1,0 +1,25 @@
+.button {
+  color: white;
+  background-color: #007bff;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 14px;
+  padding: 10px 25px;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #0056b3;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}

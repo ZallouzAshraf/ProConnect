@@ -12,9 +12,9 @@ export default function Setting() {
         <Sidebar />
         <div className="content">
           <Routes>
-            <Route path="/UpdateProfil" element={<Updateprofil />} />
-            <Route path="/Messages" element={<Messages />} />
-            <Route path="/ListRendezVous" element={<Rendezvous />} />
+            <Route path="/Setting/*" element={<Updateprofil />} />
+            <Route path="/Setting/*" element={<Messages />} />
+            <Route path="/Setting/*" element={<Rendezvous />} />
           </Routes>
         </div>
       </div>

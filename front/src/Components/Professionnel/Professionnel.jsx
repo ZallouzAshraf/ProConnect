@@ -16,10 +16,19 @@ export default function Professionnel() {
   const [Ville, setVille] = useState(searchVille || "");
   const [Genre, setGenre] = useState("");
   const [professionals, setProfessionals] = useState([]);
+  const userId = localStorage.getItem("userId");
 
   const fetchProfessionals = async () => {
+    let response;
     try {
-      const response = await axios.get("http://localhost:4000/professionals");
+      if (userId) {
+        response = await axios.get(
+          `http://localhost:4000/professionals?userId=${userId}`
+        );
+      } else {
+        response = await axios.get(`http://localhost:4000/allprofessionals`);
+      }
+
       setProfessionals(response.data.data);
     } catch (error) {
       console.log("Erreur");
@@ -62,7 +71,7 @@ export default function Professionnel() {
     <div>
       <div className="professionnel">
         <div className="search-option">
-          <h1>Filtrer Par : </h1>
+          <h1>Filtrer Par :</h1>
           <hr />
           <input
             type="search"

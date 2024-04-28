@@ -16,6 +16,10 @@ import Profil from "./pages/Profil/Profil";
 import Rendezvous from "./Components/Rendezvous/Rendezvous";
 import Updateprofil from "./Components/Updateprofil/Updateprofil";
 import Messages from "./Components/Messages/Messages";
+import Admin from "./pages/Admin/Admin";
+import Loginadmin from "./pages/Loginadmin/Loginadmin";
+import ListClients from "./pages/Admin/ListClients/ListClients";
+import ListProfs from "./pages/Admin/ListProfs/ListProfs";
 
 function App() {
   return (
@@ -31,12 +35,16 @@ function App() {
           <Route path="/allcategories" element={<Allcategories />} />
           <Route path="/professionnel" element={<Professionnel />} />
           <Route path="/About" element={<About />} />
-          <Route path="/Profil" element={<Profil />} />
+          <Route path="/Profil/*" element={<Profil />} />
           <Route path="/Contact" element={<Contactus />} />
-          <Route path="/ListRendezVous" element={<Rendezvous />} />
+          <Route path="/ListRendezVous/*" element={<Rendezvous />} />
           <Route path="/Details" element={<Detailsprof />} />
-          <Route path="/UpdateProfil" element={<Updateprofil />} />
-          <Route path="/Messages" element={<Messages />} />
+          <Route path="/UpdateProfil/*" element={<Updateprofil />} />
+          <Route path="/Messages/*" element={<Messages />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/LoginAdmin" element={<Loginadmin />} />
+          <Route path="/ListClients" element={<ListClients />} />
+          <Route path="/ListProfs" element={<ListProfs />} />
         </Routes>
       </BrowserRouter>
     </>

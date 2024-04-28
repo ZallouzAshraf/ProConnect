@@ -14,6 +14,9 @@ import axios from "axios";
 export default function Detailsprof() {
   const { state } = useLocation();
   const { nom, prenom, ville, spec, genre, phone, email } = state || {};
+  const [emailloggeduser] = useState(localStorage.getItem("email") || "");
+  const [userNomLogged, setuserNomLogged] = useState("");
+  const [userPrenomLogged, setuserPrenomLogged] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [userId, setUserId] = useState("");
   const [userNom, setuserNom] = useState("");
@@ -58,11 +61,33 @@ export default function Detailsprof() {
       }
     };
 
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/getUserId?email=${emailloggeduser}`
+        );
+        const data = await response.json();
+        if (data.userId) {
+          setuserNomLogged(data.usernom);
+          setuserPrenomLogged(data.userprenom);
+        }
+      } catch (error) {
+        console.error("Error fetching userId:", error);
+      }
+    };
+
     if (email) {
       fetchUserId();
-      console.log(userPrenom);
+      fetchUser();
     }
-  }, [email, userNom, userPrenom, userProfession]);
+  }, [
+    email,
+    userNom,
+    userPrenom,
+    userProfession,
+    userNomLogged,
+    userPrenomLogged,
+  ]);
 
   const saverdv = async () => {
     if (!userId) {
@@ -76,6 +101,8 @@ export default function Detailsprof() {
       professionalNom: userNom,
       professionalPrenom: userPrenom,
       professionalMetier: userProfession,
+      clientNom: userNomLogged,
+      clientprenom: userPrenomLogged,
       day: selectedDate.day,
       month: selectedDate.month,
       year: selectedDate.year,

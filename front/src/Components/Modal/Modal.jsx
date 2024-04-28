@@ -10,9 +10,7 @@ export default function Modal(props) {
 
   return (
     <>
-      <p className="forgot-password" onClick={toggleModal}>
-        Forget Password
-      </p>
+      <button className="btn-modal" onClick={toggleModal}></button>
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>

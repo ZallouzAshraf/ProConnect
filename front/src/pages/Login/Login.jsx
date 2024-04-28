@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [UserData, setUserData] = useState({
@@ -10,7 +11,6 @@ export default function Login() {
 
   const changeHandler = (e) => {
     setUserData({ ...UserData, [e.target.name]: e.target.value });
-    console.log(UserData);
   };
 
   const login = async () => {
@@ -30,6 +30,8 @@ export default function Login() {
       if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
         localStorage.setItem("userId", responseData.id);
+        localStorage.setItem("role", responseData.role);
+        localStorage.setItem("email", responseData.email);
 
         window.location.replace("/");
       } else {
@@ -75,7 +77,9 @@ export default function Login() {
               <input type="checkbox" />
               <span>Remember Me</span>
             </label>
-            <p className="forgot-password">Forgot Password?</p>
+            <Link to="/LoginAdmin">
+              <p className="forgot-password">Admin ?</p>
+            </Link>
           </div>
           <div className="submit-button">
             <button className="login-button" onClick={() => login()}>
