@@ -37,7 +37,7 @@ export default function ListClients() {
         <Sidebaradmin />
       </div>
       <div className="list-clients">
-        <h1>All Clients List</h1>
+        <h1>Liste des Clients </h1>
         <div className="list-clients-main">
           <p>Image</p>
           <p>Nom</p>

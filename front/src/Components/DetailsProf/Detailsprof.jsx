@@ -10,6 +10,12 @@ import clock from "../../Assets/clock.png";
 import Calendrier from "../Calendrier/Calendrier";
 import Modal from "../Modal/Modal";
 import axios from "axios";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
 
 export default function Detailsprof() {
   const { state } = useLocation();
@@ -22,19 +28,20 @@ export default function Detailsprof() {
   const [userNom, setuserNom] = useState("");
   const [userPrenom, setuserPrenom] = useState("");
   const [userProfession, setuserProfession] = useState("");
-
   const [listrdv, setlistrdv] = useState([]);
   const loggeduserid = localStorage.getItem("userId");
-
   const [selectedDate, setSelectedDate] = useState({
     day: "",
     month: "",
     year: "",
   });
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogType, setDialogType] = useState("");
 
   const changedtime = (event) => {
     setSelectedTime(event.target.value);
   };
+
   const handleDateChange = (day, month, year) => {
     setSelectedDate({
       day: day,
@@ -136,7 +143,7 @@ export default function Detailsprof() {
         const data = await response.json();
 
         if (data.success) {
-          alert("Rendezvous saved successfully");
+          handleOpenDialog("success");
           setlistrdv([...listrdv, rendezvousData]);
         } else {
           console.error("Error saving rendezvous:", data.errors);
@@ -145,7 +152,7 @@ export default function Detailsprof() {
         console.error("Error saving rendezvous:", error);
       }
     } else {
-      alert("Heure Déja Prise ! Choisir une autre heure");
+      handleOpenDialog("error");
     }
   };
 
@@ -176,6 +183,14 @@ export default function Detailsprof() {
     fetchData();
   }, [userId, listrdv]);
 
+  const handleOpenDialog = (type) => {
+    setDialogType(type);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
   return (
     <div>
       <div className="details-professionnel">
@@ -379,6 +394,23 @@ export default function Detailsprof() {
           <button className="Btn" onClick={saverdv}></button>
         </div>
       </div>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>
+          {dialogType === "error" ? "Heure Déjà Prise" : "Rendez-vous Confirmé"}
+        </DialogTitle>
+        <DialogContent>
+          <p>
+            {dialogType === "error"
+              ? "L'heure sélectionnée est déjà réservée. Veuillez choisir une autre heure."
+              : "Le rendez-vous a été ajouté avec succès."}
+          </p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

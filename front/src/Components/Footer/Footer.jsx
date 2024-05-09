@@ -6,6 +6,7 @@ import twitter from "../../Assets/twitter.png";
 import whatsapp from "../../Assets/whatsapp.png";
 import pinterest from "../../Assets/pinterest.png";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -13,10 +14,11 @@ export default function Footer() {
       <div className="row">
         <div className="col">
           <img src={logo} alt="logo" className="logo" />
-          <p>
-            ProConnect is a platform that helps you connect with professionals
-            in your industry, find career opportunities, and grow your network
-            effortlessly. Join us to expand your professional horizons today.
+          <p className="desc-footer">
+            ProConnect est une plateforme qui vous aide à vous connecter avec
+            des professionnels de votre secteur, à trouver des opportunités de
+            carrière et à développer votre réseau sans effort. Rejoignez-nous
+            dès aujourd'hui pour élargir vos horizons professionnels.
           </p>
         </div>
         <div className="col">
@@ -39,10 +41,18 @@ export default function Footer() {
             </div>
           </h3>
           <ul>
-            <li>Home</li>
-            <li>Services</li>
-            <li>A Propos</li>
-            <li>Contacts</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link>Services</Link>
+            </li>
+            <li>
+              <Link to="/About">A Propos</Link>
+            </li>
+            <li>
+              <Link to="/Contact">Contacts</Link>
+            </li>
           </ul>
         </div>
         <div className="col">

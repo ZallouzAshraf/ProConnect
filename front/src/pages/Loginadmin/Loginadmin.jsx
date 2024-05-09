@@ -303,7 +303,7 @@ export default function Loginadmin() {
       </>
       <div className={styles.signin}>
         <div className={styles.content}>
-          <h2>Login Admin</h2>
+          <h2>Connexion Admin</h2>
 
           <div className={styles.form}>
             <div className={styles.inputBox}>
@@ -314,7 +314,7 @@ export default function Loginadmin() {
                 value={adminData.username}
                 onChange={changeHandler}
               />
-              <i>Username Admin</i>
+              <i>Nom d'utilisateur</i>
             </div>
 
             <div className={styles.inputBox}>
@@ -325,11 +325,11 @@ export default function Loginadmin() {
                 value={adminData.password}
                 onChange={changeHandler}
               />
-              <i>Password Admin</i>
+              <i>Mot de passe </i>
             </div>
 
             <div className={styles.inputBox}>
-              <input type="submit" value="Login" onClick={loginadmin} />
+              <input type="submit" value="Connexion" onClick={loginadmin} />
             </div>
           </div>
         </div>

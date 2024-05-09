@@ -1,5 +1,8 @@
 .search {
   background: #af9f776b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100px;
   padding: 5px;
@@ -7,12 +10,6 @@
   box-shadow: 15px 5px 10px rgba(0, 0, 0, 0.8);
 }
 
-.search input {
-  width: 250px;
-  height: 35px;
-  margin: 25px;
-  padding: 10px;
-}
 .search select {
   width: 250px;
   height: 35px;
@@ -23,7 +20,7 @@
 .search button {
   width: 170px;
   height: 38px;
-  background: #000;
+  background: linear-gradient(to right, #818181, #b67332);
   margin-left: 80px;
   border: none;
   color: white;
@@ -33,4 +30,67 @@
 .search button:hover {
   background: linear-gradient(to right, #818181, #b67332);
   border: 1px solid #b67332;
+}
+
+.input {
+  color: #000;
+  font-size: 20px;
+  background-color: transparent;
+
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: 1px solid rgba(128, 128, 128, 0.43);
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input:focus + .input-border {
+  width: 100%;
+}
+
+.form-control {
+  position: relative;
+  --width-of-input: 300px;
+}
+
+.input-alt {
+  font-size: 1.2rem;
+  padding-inline: 1em;
+  padding-block: 0.8em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.input::placeholder {
+  font: 17px sans-serif;
+}
+.input-border-alt {
+  height: 3px;
+  background: linear-gradient(90deg, #ff7b00 0%, #818181 50%, #000000 100%);
+  transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.input-alt:focus + .input-border-alt {
+  width: 100%;
+}
+.selectSpec select {
+  background: transparent;
+  height: 40px;
+  border: 1px solid rgba(255, 156, 90, 0.43);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

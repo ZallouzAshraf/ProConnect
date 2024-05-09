@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./Rendezvous.css";
 import Setting from "../Setting/Setting";
 import axios from "axios";
-import { MdDelete } from "react-icons/md";
+import annuler from "../../Assets/annuler.png";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Rendezvous() {
   const [loggeduserid] = useState(localStorage.getItem("userId") || "");
   const [role] = useState(localStorage.getItem("role") || "");
   const [listrdv, setlistrdv] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [selectedRdvId, setSelectedRdvId] = useState("");
 
   const fetchRdv = async () => {
     if (!loggeduserid) {
@@ -41,10 +47,10 @@ export default function Rendezvous() {
     fetchRdv();
   }, [loggeduserid, role]);
 
-  const DeleteRdv = async (id) => {
+  const DeleteRdv = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/deleteRdv/${id}`
+        `http://localhost:4000/deleteRdv/${selectedRdvId}`
       );
       if (response.status === 200) {
         fetchRdv();
@@ -52,7 +58,19 @@ export default function Rendezvous() {
     } catch (error) {
       console.error("Error deleting rendezvous:", error);
     }
+    handleClose();
   };
+
+  const handleClickOpen = (id) => {
+    setOpen(true);
+    setSelectedRdvId(id);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedRdvId("");
+  };
+
   return (
     <div className="profil-content">
       <div>
@@ -64,12 +82,12 @@ export default function Rendezvous() {
             <tr>
               <th>Nom Client</th>
               <th>Prénom Client</th>
-              <th>Nom Profesionnel</th>
-              <th>Prénom Profesionnel</th>
+              <th>Nom Professionnel</th>
+              <th>Prénom Professionnel</th>
               <th>Profession</th>
               <th>Date RDV</th>
               <th>Heure RDV</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -84,10 +102,10 @@ export default function Rendezvous() {
                   <td>{item.date}</td>
                   <td>{item.time}</td>
                   <td className="removebtn">
-                    <MdDelete
-                      color="red"
-                      size={"30px"}
-                      onClick={() => DeleteRdv(item._id)}
+                    <img
+                      src={annuler}
+                      className="annule-img"
+                      onClick={() => handleClickOpen(item._id)}
                     />
                   </td>
                 </tr>
@@ -98,6 +116,22 @@ export default function Rendezvous() {
           </tbody>
         </table>
       </div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Voulez-vous vraiment annuler ce Rendez-vous ?"}
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose}>Non</Button>
+          <Button onClick={DeleteRdv} autoFocus>
+            Oui
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

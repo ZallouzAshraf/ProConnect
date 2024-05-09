@@ -57,7 +57,7 @@ export default function ListProfs() {
         <Sidebaradmin />
       </div>
       <div className="list-profs">
-        <h1>All Professionnels List</h1>
+        <h1>Liste des Professionnels</h1>
         <div className="list-profs-main">
           <p>Image</p>
           <p>Nom</p>

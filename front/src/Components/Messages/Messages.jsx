@@ -288,44 +288,6 @@ export default function Messages() {
           </div>
         )}
       </div>
-
-      <div className="w-25 h-screen bg-light px-8 py-16 overflow-scroll">
-        <h3>People</h3>
-        <div>
-          {users.length > 0 ? (
-            users.map(({ userId, user }) => (
-              <div
-                key={userId}
-                className="flex items-center py-8 border-b border-b-gray-300"
-              >
-                <div
-                  className="cursor-pointer flex items-center"
-                  onClick={() => fetchMessages("new", user)}
-                >
-                  <div>
-                    <img
-                      src={user.image}
-                      className="w-60 h-60 rounded-full p-4 border border-primary"
-                    />
-                  </div>
-                  <div className="ml-6">
-                    <h3 className="text-lg font-semibold">
-                      {user.prenom} {user.nom}
-                    </h3>
-                    <p className="text-sm font-light text-gray-600">
-                      {user.email}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-center text-lg font-semibold mt-24">
-              No Conversations
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 }

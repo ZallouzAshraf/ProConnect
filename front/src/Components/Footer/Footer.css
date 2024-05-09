@@ -18,7 +18,7 @@ footer {
   justify-content: space-between;
 }
 .col {
-  flex-basis: 25%;
+  flex-basis: 24%;
   padding: 10;
 }
 .col:nth-child(2),
@@ -29,6 +29,10 @@ footer {
   width: 50%;
   margin-bottom: 10px;
   margin-left: 20%;
+  margin-top: -40px;
+}
+.desc-footer {
+  text-align: justify;
 }
 .col h3 {
   width: fit-content;

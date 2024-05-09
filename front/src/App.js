@@ -20,6 +20,7 @@ import Admin from "./pages/Admin/Admin";
 import Loginadmin from "./pages/Loginadmin/Loginadmin";
 import ListClients from "./pages/Admin/ListClients/ListClients";
 import ListProfs from "./pages/Admin/ListProfs/ListProfs";
+import Addcat from "./pages/Admin/AddCategorie/Addcat";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/LoginAdmin" element={<Loginadmin />} />
           <Route path="/ListClients" element={<ListClients />} />
           <Route path="/ListProfs" element={<ListProfs />} />
+          <Route path="/AddCategorie" element={<Addcat />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Registerpro.css";
-import { data, villedata } from "../../Components/Data/data";
+import { villedata } from "../../Components/Data/data";
+import axios from "axios";
 
 export default function Registerpro() {
   const [image, setimage] = useState();
   const [imagediplome, setImagediplome] = useState();
   const [imagecin, setImagecin] = useState();
   const [isChecked, setIsChecked] = useState(false);
+  const [categorie, setcategorie] = useState([]);
   const [UserData, setUserData] = useState({
     nom: "",
     prenom: "",
@@ -101,6 +103,19 @@ export default function Registerpro() {
       alert("Une erreur s'est produite. Veuillez réessayer");
     }
   };
+
+  const fetchCategorie = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/allcategories`);
+      setcategorie(response.data.data);
+    } catch (error) {
+      console.log("Erreur");
+    }
+  };
+
+  useEffect(() => {
+    fetchCategorie();
+  }, [categorie]);
   return (
     <div className="reg-container">
       <div className="wrapper">
@@ -229,9 +244,9 @@ export default function Registerpro() {
                     onChange={changeHandler}
                     required
                   >
-                    {data.map((item, index) => (
-                      <option key={index} value={item.title}>
-                        {item.title}
+                    {categorie.map((item, index) => (
+                      <option key={index} value={item.nom}>
+                        {item.nom}
                       </option>
                     ))}
                   </select>

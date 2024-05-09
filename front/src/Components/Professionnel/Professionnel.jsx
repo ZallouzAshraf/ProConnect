@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Professionnel.css";
 import Procard from "../ProCard/Procard";
-import { professionnels } from "../Data/data";
 import { useLocation } from "react-router-dom";
+import { villedata } from "../Data/data";
 import homme from "../../Assets/homme.png";
 import femme from "../../Assets/femme.png";
 import axios from "axios";
@@ -17,6 +17,7 @@ export default function Professionnel() {
   const [Genre, setGenre] = useState("");
   const [professionals, setProfessionals] = useState([]);
   const userId = localStorage.getItem("userId");
+  const [categorie, setcategorie] = useState([]);
 
   const fetchProfessionals = async () => {
     let response;
@@ -66,6 +67,18 @@ export default function Professionnel() {
       setVille("");
     }
   }, [searchName, searchSpec, searchVille, spec]);
+  const fetchCategorie = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/allcategories`);
+      setcategorie(response.data.data);
+    } catch (error) {
+      console.log("Erreur");
+    }
+  };
+
+  useEffect(() => {
+    fetchCategorie();
+  }, [categorie]);
 
   return (
     <div>
@@ -87,23 +100,18 @@ export default function Professionnel() {
           />
           <select value={Spec} onChange={(e) => setSpec(e.target.value)}>
             <option value="">Spécialité</option>
-            {Array.from(
-              new Set(professionals.map((prof) => prof.profession))
-            ).map((profession, index) => (
-              <option key={index} value={profession}>
-                {profession}
+            {categorie.map((item, index) => (
+              <option key={index} value={item.nom}>
+                {item.nom}
               </option>
             ))}
           </select>
           <select value={Ville} onChange={(e) => setVille(e.target.value)}>
-            <option value="">Ville</option>
-            {Array.from(new Set(professionnels.map((prof) => prof.ville))).map(
-              (ville, index) => (
-                <option key={index} value={ville}>
-                  {ville}
-                </option>
-              )
-            )}
+            {villedata.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
           </select>
           <select value={Genre} onChange={(e) => setGenre(e.target.value)}>
             <option value="">Genre</option>

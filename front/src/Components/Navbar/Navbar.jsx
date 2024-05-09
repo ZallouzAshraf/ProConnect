@@ -31,7 +31,7 @@ export default function Navbar() {
                     className="nav-links"
                     onClick={click ? handleClick : null}
                   >
-                    Home
+                    Accueil
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -40,7 +40,7 @@ export default function Navbar() {
                     className="nav-links"
                     onClick={click ? handleClick : null}
                   >
-                    About
+                    À propos
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -84,7 +84,7 @@ export default function Navbar() {
                     window.location.replace("/");
                   }}
                 >
-                  Logout
+                  Déconnexion
                 </button>
               </div>
             ) : (

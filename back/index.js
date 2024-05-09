@@ -196,6 +196,16 @@ const Admin = mongoose.model("Admin", {
     required: true,
   },
 });
+const Categorie = mongoose.model("Categorie", {
+  nom: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    require: true,
+  },
+});
 
 const Rendezvous = mongoose.model("Rendezvous", {
   userId: {
@@ -467,6 +477,20 @@ app.get("/allclients", async (req, res) => {
   }
 });
 
+//Get All Categories
+app.get("/allcategories", async (req, res) => {
+  try {
+    const allcategories = await Categorie.find({});
+    res.json({ success: true, data: allcategories });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Erreur lors de la récupération des Categories",
+      error: error.message,
+    });
+  }
+});
+
 //Get UserId
 app.get("/getUserId", async (req, res) => {
   try {
@@ -632,6 +656,42 @@ app.delete("/deleteProf/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Error deleting Professionnal", error });
   }
+});
+
+//Delete Catégorie
+app.delete("/deleteCat/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUser = await Categorie.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "Catégorie n'existe pas" });
+    }
+    res.status(200).json({ message: "Catégorie supprimée avec succès" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la suppression du Catégorie", error });
+  }
+});
+
+// Add Catégorie
+app.post("/addCategorie", async (req, res) => {
+  let check = await Categorie.findOne({ nom: req.body.categorie });
+  if (check) {
+    return res.status(400).json({
+      success: false,
+      errors: "Cette Catégorie existe déjà",
+    });
+  }
+
+  const categorie = new Categorie({
+    nom: req.body.categorie,
+    image: req.body.image,
+  });
+
+  //Saving User in DB
+  await categorie.save();
+  res.json({ success: true });
 });
 
 // Test Code Of Chat App
