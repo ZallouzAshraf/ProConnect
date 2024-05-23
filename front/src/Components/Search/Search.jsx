@@ -30,15 +30,15 @@ export default function Search() {
   return (
     <div>
       <div className="search">
-        <div class="form-control">
+        <div className="form-control">
           <input
             type="search"
-            class="input input-alt"
+            className="input input-alt"
             placeholder="Nom du Professionnel"
             value={searchName}
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <span class="input-border input-border-alt"></span>
+          <span className="input-border input-border-alt"></span>
         </div>
         <div className="selectSpec">
           <select

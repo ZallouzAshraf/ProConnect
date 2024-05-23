@@ -13,7 +13,6 @@ import axios from "axios";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 
@@ -51,50 +50,36 @@ export default function Detailsprof() {
   };
 
   useEffect(() => {
-    const fetchUserId = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:4000/getUserId?email=${email}`
-        );
-        const data = await response.json();
-        if (data.userId) {
-          setUserId(data.userId);
-          setuserNom(data.usernom);
-          setuserPrenom(data.userprenom);
-          setuserProfession(data.metier);
+        const [responseUserId, responseUser] = await Promise.all([
+          fetch(`http://localhost:4000/getUserId?email=${email}`),
+          fetch(`http://localhost:4000/getUserId?email=${emailloggeduser}`),
+        ]);
+
+        const dataUserId = await responseUserId.json();
+        const dataUser = await responseUser.json();
+
+        if (dataUserId.userId) {
+          setUserId(dataUserId.userId);
+          setuserNom(dataUserId.usernom);
+          setuserPrenom(dataUserId.userprenom);
+          setuserProfession(dataUserId.metier);
+        }
+
+        if (dataUser.userId) {
+          setuserNomLogged(dataUser.usernom);
+          setuserPrenomLogged(dataUser.userprenom);
         }
       } catch (error) {
-        console.error("Error fetching userId:", error);
+        console.error("Error fetching user data:", error);
       }
     };
 
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:4000/getUserId?email=${emailloggeduser}`
-        );
-        const data = await response.json();
-        if (data.userId) {
-          setuserNomLogged(data.usernom);
-          setuserPrenomLogged(data.userprenom);
-        }
-      } catch (error) {
-        console.error("Error fetching userId:", error);
-      }
-    };
-
-    if (email) {
-      fetchUserId();
-      fetchUser();
+    if (email && emailloggeduser) {
+      fetchData();
     }
-  }, [
-    email,
-    userNom,
-    userPrenom,
-    userProfession,
-    userNomLogged,
-    userPrenomLogged,
-  ]);
+  }, [email, emailloggeduser]);
 
   const saverdv = async () => {
     if (!userId) {

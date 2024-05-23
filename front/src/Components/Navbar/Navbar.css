@@ -13,16 +13,14 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  font-family: "Playfair Display", serif;
+  font-family: "Inter", sans-serif;
 }
 .nav-logo img {
-  width: 50px;
-  height: 70px;
+  width: 15%;
   margin-top: 15px;
   margin-left: 80px;
 }
 .nav-logo {
-  color: #b67332;
   align-items: center;
   margin-left: 20px;
   margin-bottom: 6px;
@@ -31,7 +29,6 @@
   font-weight: bold;
   font-size: 32px;
   flex-grow: 1;
-  font-family: "Playfair Display", serif;
 }
 .nav-container {
   display: flex;
@@ -55,14 +52,14 @@
   display: flex;
   list-style: none;
   text-align: center;
-  margin-right: 160px;
+  margin-right: 150px;
   margin-top: 5px;
   gap: 25px;
-  font-size: 22px;
+  font-size: 20px;
 }
 .nav-menu-right {
   display: flex;
-  margin-right: 100px;
+  margin-right: 40px;
   gap: 20px;
   text-align: center;
   list-style: none;
@@ -141,9 +138,7 @@
 .nav-icon {
   display: none;
 }
-.nav-logo img {
-  width: 90px;
-}
+
 .btnlogin {
   width: 170px;
   height: 35px;

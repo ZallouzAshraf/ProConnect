@@ -42,16 +42,22 @@ export default function Footer() {
           </h3>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" aria-label="Home">
+                Home
+              </Link>
             </li>
             <li>
-              <Link>Services</Link>
+              <Link aria-label="Blog">Blog</Link>
             </li>
             <li>
-              <Link to="/About">A Propos</Link>
+              <Link to="/About" aria-label="About">
+                A Propos
+              </Link>
             </li>
             <li>
-              <Link to="/Contact">Contacts</Link>
+              <Link to="/Contact" aria-label="Contact">
+                Contacts
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,15 +71,15 @@ export default function Footer() {
           <form>
             <i className="fa-regular fa-envelope"></i>
             <input type="email" placeholder="Entrer Votre Email" required />
-            <button type="submit">
+            <button type="submit" aria-label="Subscribe">
               <FaArrowRight color="white" />
             </button>
           </form>
           <div className="socials-icons">
-            <img src={facebook} alt="" />
-            <img src={whatsapp} alt="" />
-            <img src={twitter} alt="" />
-            <img src={pinterest} alt="" />
+            <img src={facebook} alt="Facebook" />
+            <img src={whatsapp} alt="WhatsApp" />
+            <img src={twitter} alt="Twitter" />
+            <img src={pinterest} alt="Pinterest" />
           </div>
         </div>
       </div>

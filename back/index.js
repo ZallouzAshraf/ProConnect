@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 app.use(express.json());
 app.use(cors());
@@ -694,241 +695,32 @@ app.post("/addCategorie", async (req, res) => {
   res.json({ success: true });
 });
 
-// Test Code Of Chat App
-
-const io = require("socket.io")(8080, {
-  cors: {
-    origin: "http://localhost:3000",
+// Transporter setup for sending emails
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "zallouzachraf@gmail.com",
+    pass: "asnq kvuy kqko ulsk",
   },
 });
 
-// Import Files
-const Conversations = require("./models/Conversations");
-const Messages = require("./models/Messages");
+app.post("/send-email", (req, res) => {
+  const { name, email, subject, message } = req.body;
 
-app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+  const mailOptions = {
+    from: email,
+    to: "zallouzachraf@gmail.com",
+    subject: subject,
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+  };
 
-// Socket.io
-let users = [];
-io.on("connection", (socket) => {
-  console.log("User connected", socket.id);
-  socket.on("addUser", (userId) => {
-    const isUserExist = users.find((user) => user.userId === userId);
-    if (!isUserExist) {
-      const user = { userId, socketId: socket.id };
-      users.push(user);
-      io.emit("getUsers", users);
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).send(error.toString());
     }
+    res.status(200).send("Email sent: " + info.response);
   });
-
-  socket.on(
-    "sendMessage",
-    async ({ senderId, receiverId, message, conversationId }) => {
-      try {
-        // Validate data
-        if (!senderId || !receiverId || !message) {
-          throw new Error("Missing required data");
-        }
-
-        // Fetch sender and receiver from MongoDB
-        let senderUser = await User.findById(senderId);
-        let receiverUser = await User.findById(receiverId);
-
-        if (!senderUser) {
-          throw new Error("Sender not found :" + senderId);
-        }
-        if (!receiverUser) {
-          throw new Error("Receiver not found");
-        }
-
-        // Find receiver in connected users
-        const receiver = users.find((user) => user.userId === receiverId);
-        const sender = users.find((user) => user.userId === senderId);
-
-        if (receiver) {
-          io.to(receiver.socketId)
-            .to(sender.socketId)
-            .emit("getMessage", {
-              senderId,
-              message,
-              conversationId,
-              receiverId,
-              user: {
-                id: senderUser._id,
-                prenom: senderUser.prenom,
-                nom: senderUser.nom,
-                email: senderUser.email,
-              },
-            });
-        } else {
-          io.to(sender.socketId).emit("getMessage", {
-            senderId,
-            message,
-            conversationId,
-            receiverId,
-            user: {
-              id: senderUser._id,
-              fullName: senderUser.prenom,
-              email: senderUser.email,
-            },
-          });
-        }
-      } catch (error) {
-        console.error("Error sending message:", error.message);
-        // Optionally send an error message back to the client
-        socket.emit("errorMessage", { message: "Error sending message" });
-      }
-    }
-  );
-
-  socket.on("disconnect", () => {
-    users = users.filter((user) => user.socketId !== socket.id);
-    io.emit("getUsers", users);
-  });
-  // io.emit('getUsers', socket.userId);
 });
-
-app.post("/api/conversation", async (req, res) => {
-  try {
-    const { senderId, receiverId } = req.body;
-    const newCoversation = new Conversations({
-      members: [senderId, receiverId],
-    });
-    await newCoversation.save();
-    res.status(200).send("Conversation created successfully");
-  } catch (error) {
-    console.log(error, "Error");
-  }
-});
-
-app.post("/api/conversations", async (req, res) => {
-  try {
-    const loggedInUser = req.body.userId;
-    const conversations = await Conversations.find({
-      members: { $in: [loggedInUser] },
-    });
-    const conversationUserData = await Promise.all(
-      conversations.map(async (conversation) => {
-        const receiverId = conversation.members.find(
-          (member) => member !== loggedInUser
-        );
-        const user = await User.findById(receiverId);
-        return {
-          user: {
-            receiverId: user.id,
-            email: user.email,
-            nom: user.nom,
-            image: user.image,
-            prenom: user.prenom,
-          },
-          conversationId: conversation._id,
-        };
-      })
-    );
-    res.status(200).json(conversationUserData);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
-
-app.post("/api/message", async (req, res) => {
-  try {
-    const { conversationId, senderId, message, receiverId = "" } = req.body;
-    if (!senderId || !message)
-      return res.status(400).send("Please fill all required fields");
-    if (conversationId === "new" && receiverId) {
-      const newCoversation = new Conversations({
-        members: [senderId, receiverId],
-      });
-      await newCoversation.save();
-      const newMessage = new Messages({
-        conversationId: newCoversation._id,
-        senderId,
-        message,
-      });
-      await newMessage.save();
-      return res.status(200).send("Message sent successfully");
-    } else if (!conversationId && !receiverId) {
-      return res.status(400).send("Please fill all required fields");
-    }
-    const newMessage = new Messages({ conversationId, senderId, message });
-    await newMessage.save();
-    res.status(200).send("Message sent successfully");
-  } catch (error) {
-    console.log(error, "Error");
-  }
-});
-
-app.get("/api/message/:conversationId", async (req, res) => {
-  try {
-    const checkMessages = async (conversationId) => {
-      console.log(conversationId, "conversationId");
-      const messages = await Messages.find({ conversationId });
-      const messageUserData = Promise.all(
-        messages.map(async (message) => {
-          const user = await User.findById(message.senderId);
-          return {
-            user: {
-              id: user._id,
-              email: user.email,
-              nom: user.nom,
-              prenom: user.prenom,
-            },
-            message: message.message,
-          };
-        })
-      );
-      res.status(200).json(await messageUserData);
-    };
-    const conversationId = req.params.conversationId;
-    if (conversationId === "new") {
-      const checkConversation = await Conversations.find({
-        members: { $all: [req.query.senderId, req.query.receiverId] },
-      });
-      if (checkConversation.length > 0) {
-        checkMessages(checkConversation[0]._id);
-      } else {
-        return res.status(200).json([]);
-      }
-    } else {
-      checkMessages(conversationId);
-    }
-  } catch (error) {
-    console.log("Error", error);
-  }
-});
-
-app.get("/api/users/:userId", async (req, res) => {
-  try {
-    const userId = req.params.userId;
-    const users = await User.find({ _id: { $ne: userId } });
-    const usersData = Promise.all(
-      users.map(async (user) => {
-        return {
-          user: {
-            email: user.email,
-            nom: user.nom,
-            prenom: user.prenom,
-            image: user.image,
-            receiverId: user._id,
-          },
-        };
-      })
-    );
-    res.status(200).json(await usersData);
-  } catch (error) {
-    console.log("Error", error);
-  }
-});
-
-// End Test Of chat App
 
 app.listen(port, () => {
   console.log("Server Working on Port " + port);

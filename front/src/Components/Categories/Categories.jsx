@@ -26,8 +26,8 @@ export default function Categories() {
       <Carousel showDots={true} responsive={responsive} infinite={true}>
         {cardCategorie}
       </Carousel>
-      <Link to="/allcategories">
-        <button className="cat-plus" onClick={scrollToTop}>
+      <Link to="/allcategories" onClick={scrollToTop}>
+        <button className="cat-plus">
           Voir Plus <FaArrowRight className="arrow-ic" />
         </button>
       </Link>

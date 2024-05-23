@@ -1,8 +1,8 @@
 import React from "react";
 import "./Info.css";
-import img1 from "../../Assets/disponibilite.png";
-import img2 from "../../Assets/ql.png";
-import img3 from "../../Assets/paiementsecurise.png";
+import img1 from "../../Assets/disponibilite.webp";
+import img2 from "../../Assets/ql.webp";
+import img3 from "../../Assets/paiementsecurise.webp";
 
 export default function Info() {
   return (
@@ -13,18 +13,18 @@ export default function Info() {
 
       <div className="infos">
         <div>
-          <img src={img1} alt="" />
+          <img src={img1} alt="" width={"100%"} height={"90%"} />
           <p>ProConnect facilite la recherche de professionnels qualifiés.</p>
         </div>
         <div>
-          <img src={img2} alt="" />
+          <img src={img2} alt="" width={"100%"} height={"90%"} />
           <p>
             Évitez les recherches fastidieuses pour trouver un professionnel
             disponible.
           </p>
         </div>
         <div>
-          <img src={img3} alt="" />
+          <img src={img3} alt="" width={"100%"} height={"90%"} />
           <p>
             Simplifiez vos paiements en ligne et signalez les problèmes
             facilement.

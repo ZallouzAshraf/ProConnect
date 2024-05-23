@@ -15,7 +15,7 @@ export default function About() {
       <div className="container">
         <section className="about">
           <div className="about-image">
-            <img src={imgabout} alt="" />
+            <img src={imgabout} alt="" width={"600px"} height={"500px"} />
           </div>
           <div className="about-content">
             <h2> Un Réseau Professionnel Dynamique</h2>
